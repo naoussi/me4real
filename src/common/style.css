@@ -1,0 +1,29 @@
+.event-container{
+    border-width: 1px;
+}
+.event-title{
+    line-height: normal;
+    text-align: left;
+    padding: 10px;
+
+}
+.event-text {
+    opacity: 0.8;
+    padding: 10px;
+    justify-content: center;
+    text-align: left;
+    font: 14px/18px avenir-lt-w01_35-light1475496,sans-serif;
+    overflow: wrap  ;
+}
+.event-image-left{
+    border: 1px solid #d9d9d9;
+    border-right: 0px;
+    padding: 0px !important;
+}
+.event-side-right{
+    border: 1px solid #d9d9d9;
+    border-left: 0px;
+}
+.height {
+    height: 296px !important;
+}
