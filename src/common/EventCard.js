@@ -33,7 +33,7 @@ function EventCard(props) {
                 </div>
                 <div className="2giuh">
 
-                    <div style={{ paddingLeft: '85px' }}>
+                    <div className="btn-right">
                     <Link to={`/event/${props.id}`} >
 
                         <Button variant="warning" size="md">
