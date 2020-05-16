@@ -9,15 +9,13 @@ function NewsListing(props) {
         <section>
             <div className="container">
                 <div className="row event-container">
-                    <div className="col-md-6 height event-image-left" >
+                    <div className="col-md-5 height event-image-left" >
                         <Image src={props.id.image} style={{ height: '292px', padding: '' }} fluid />
                     </div>
-                    <div className="col-md-6 height event-side-right">
+                    <div className="col-md-5 height event-side-right">
                         <div className="event-title">
                             <Link to={`/news/${props.id._id}`} >
-                                <h3 style={{ color: 'rgb(146, 143, 143)'}}>
-                                    {props.id.title}
-                                </h3>
+                                <h3 style={{ color: 'rgb(146, 143, 143)'}}> {props.id.title}</h3> 
                             </Link>
                         </div>
                         <div className="event-text">

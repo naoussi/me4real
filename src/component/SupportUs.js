@@ -3,16 +3,6 @@ import { Jumbotron, Container, Button } from 'react-bootstrap'
 import '../App.css'
 import { FaUser, FaPhone, FaGlobe } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import supportImageA from "../images/support-A.jpg";
-
-const styles = {
-    supportImageStyles: {
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center',
-        objectFit: "cover"
-    }
-}
 
 function SupportUs(props) {
     useEffect(() => {
@@ -49,80 +39,58 @@ function SupportUs(props) {
             <section>
                 <div className="row">
                     <div className="col-md-12" style={{ height: '525px', padding: 0 }}>
-                        <img style={styles.supportImageStyles} src={supportImageA} height='525px' width="100%" />
+                        <img src="splash.jpg" height='525px' width="100%" />
                     </div>
 
                 </div>
             </section>
             {/* Badge section */}
-            {/*<section>*/}
+            <section>
 
-            {/*    <div className="row mission-height middle" >*/}
-            {/*        <br />*/}
-            {/*        <p style={{ textAlign: 'center', paddingTop: '30px', color: 'black' }}>*/}
-            {/*            <span className="badge-section-text" style={{fontWeight: 'bold'}}>*/}
-            {/*                Let's Make A Change <br />*/}
-            {/*            </span>*/}
-            {/*            Here are some ways you can help:*/}
-            {/*        </p>*/}
-            {/*    </div>*/}
-
-            {/*</section>*/}
-
-                <section className='jumbotron jumbotron-fluid bg-white'>
+                <div className="row mission-height middle" >
                     <br />
-                    <p  style={{textAlign: 'center'}}>
-                        <span className="badge-section-text font-weight-bold">
-                            Let's Make A Change
+                    <p style={{ textAlign: 'center', paddingTop: '30px', color: 'black' }}>
+                        <span className="badge-section-text" style={{fontWeight: 'bold'}}>Let's Make A Change <br />
                         </span>
-                        <br/>
-                        <br/>
-                        <span className="">
-                            Here are some ways you can help:
-                        </span>
+                        Here are some ways you can donate:
                     </p>
-                    {/*<div className="row mission-height site-primary-bg-color" >*/}
+                </div>
 
-                    {/*</div>*/}
-                </section>
+            </section>
             <section>
                 <div className="row" >
-                    <div className="col-md-6 col-sm-6 p-5 site-secondary-bg-color" >
+                    <div className="col-md-4 col-sm-4 mission-height site-primary-bg-color" >
                         <div style={{ paddingTop: 10 }} >
 
 
-                            <a href="javascript:void(0)">
+                            <a href="/">
                                 <p className="icon-fonts">
                                 <FaUser variant="info"> user</FaUser>
                                 </p>
                                 <p className="large-text">In Person</p></a>
-                            <p className="small-text">
-                                Me4Real Counseling center
-                                <br />
-                                Monte Jouvence, Yaounde Cameroon
-                            </p>
+                            <p className="small-text"> 500 Terry Francois Street <br />San Francisco, CA 94158</p>
                         </div>
 
                     </div>
-                    {/*<div className="col-md-4 col-sm-4 mission-height site-suppliment-bg-color" >*/}
-                    {/*    <div style={{ paddingTop: 10 }} >*/}
-                    {/*        <a href="/">*/}
-                    {/*            <p className="icon-fonts">*/}
-                    {/*                <FaGlobe variant="info"> globe</FaGlobe>*/}
-                    {/*            </p>                                */}
-                    {/*        <p className="large-text">Online</p></a>*/}
-                    {/*        <p className="small-text"> Make a tax deductible donation‏.<br /> <Button variant="warning" style={{ textAlign: 'center', marginTop: '10px' }}>Click to Give</Button></p>*/}
-                    {/*        */}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-                    <div className="col-md-6 col-sm-6 p-5 site-primary-bg-color" >
+                    <div className="col-md-4 col-sm-4 mission-height site-suppliment-bg-color" >
                         <div style={{ paddingTop: 10 }} >
-                            <a href="javascript:void(0)">
+                            <a href="/">
+                                <p className="icon-fonts">
+                                    <FaGlobe variant="info"> globe</FaGlobe>
+                                </p>                                
+                            <p className="large-text">Online</p></a>
+                            <p className="small-text"> Make a tax deductible donation‏.<br /> <Button variant="warning" style={{ textAlign: 'center', marginTop: '10px' }}>Click to Give</Button></p>
+                            
+                        </div>
+                    </div>
+                    <div className="col-md-4 col-sm-4 mission-height site-tertiary-bg-color" >
+                        <div style={{ paddingTop: 10 }} >
+                            <a href="/">
                                 <p className="icon-fonts">
                                     <FaPhone variant="info"> phone</FaPhone>
                                 </p>
                             <p className="large-text">Over the Phone</p></a>
-                            <p className="small-text"> It's easy to donate offline too. <br /> Tel: (+237) 651 621 861</p>
+                            <p className="small-text"> It's easy to donate offline too. <br /> Tel: 123-456-7890</p>
 
                         </div>
 

@@ -54,7 +54,7 @@ function Footer(props) {
                         <p> 
                             <b>Location:</b> Monte Jouvence, Yaounde Cameroon    <br />
                             <b>Email:</b> info@me4realinternational.org    <br />
-                            <b>Phone:</b> (+237) 651 621 861 <br />
+                            <b>Phone:</b> (+237)651621861 <br />
                             <b>Registered Association:</b>  46/e.29/1111/VOL.8.APPB of July 27, 2008, Cameroon</p>
                     </div>
                     <div className="col-md-4 offset-1 mt-0">

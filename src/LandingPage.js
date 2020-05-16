@@ -32,7 +32,7 @@ function LandingPage(props) {
             padding: 0
         },
         carouselStyle: {
-            height: '900px'
+            height: '800px'
         },
         carouselImg: {
             position: 'absolute',
@@ -46,13 +46,13 @@ function LandingPage(props) {
         },
         captionStyles: {
             backgroundColor: 'black',
-            opacity: 0.7,
+            opacity: 0.8,
             padding: 10,
             borderRadius: 10,
             marginBottom: 100
         },
         fourElementsStyle: {
-            // marginTop: -40,
+            marginTop: -20,
             // width: '100%'
         },
         testimonialStyle: {
@@ -92,7 +92,7 @@ function LandingPage(props) {
                 <div className='carousel-inner' style={styles.carouselStyle}>
                     {
                         props.carousels && props.carousels.map((item, key) => (
-                            <div className={`carousel-item ${key === 0 ? 'active' : ''}`} style={styles.carouselStyle}>
+                            <div key={key} className={`carousel-item ${key === 0 ? 'active' : ''}`} style={styles.carouselStyle}>
                                 <img className='d-block w-100'
                                         src={item.image}
                                         style={styles.carouselImg}
@@ -139,60 +139,34 @@ function LandingPage(props) {
             {/*    </Carousel>*/}
             {/*</div>*/}
             <div className='jumbotron-fluid' style={styles.fourElementsStyle}>
-                <div className='row m-0 p-0'>
-                    <div className='col-md-3 mt-0 site-secondary-bg-color' style={{height: 200}}>
-                        <div style={{paddingTop: 60}}>
+                <div className="row" >
+                    <div className="col-md-3 col-sm-3 mission-height-landing site-secondary-bg-color" >
+                        <div style={{paddingTop: 20}} >
                             <a href="/about"><p className="large-text">Our Mission</p></a>
                             <p className="small-text">Our Goal, Vision & Commitment</p>
                         </div>
+
                     </div>
-                    <div className='col-md-3 site-tertiary-bg-color' style={{height: 200}}>
-                        <div style={{paddingTop: 60}} >
+                    <div className="col-md-3 col-sm-3 mission-height-landing site-tertiary-bg-color" >
+                        <div style={{ paddingTop: 20 }} >
                             <a href="/"><p className="large-text">Programs & Projects</p></a>
                             <p className="small-text"> Our goal, vision , mission</p>
                         </div>
                     </div>
-                    <div className='col-md-3 site-suppliment-bg-color' style={{height: 200}}>
-                        <div style={{paddingTop: 60}} >
+                    <div className="col-md-3 col-sm-3 mission-height-landing site-suppliment-bg-color" >
+                        <div style={{ paddingTop: 20 }} >
                             <a href="/event"><p className="large-text"> Our Events</p></a>
                             <p className="small-text">Register & Help Make Change</p>
                         </div>
+
                     </div>
-                    <div className='col-md-3 site-primary-bg-color' style={{height: 200}}>
-                        <div style={{paddingTop: 60}}>
+                    <div className="col-md-3 mission-height-landing site-primary-bg-color"  >
+                        <div style={{ paddingTop: 20 }} >
                             <a href="/support"><p className="large-text">Get Involved</p></a>
                             <p className="small-text"> Volunteer, Participate, or Donate</p>
                         </div>
                     </div>
                 </div>
-                {/*<div className="row" >*/}
-                {/*    <div className="col-md-3 col-sm-3 mission-height-landing site-secondary-bg-color" >*/}
-                {/*        <div style={{paddingTop: 20}} >*/}
-                {/*            <a href="/about"><p className="large-text">Our Mission</p></a>*/}
-                {/*            <p className="small-text">Our Goal, Vision & Commitment</p>*/}
-                {/*        </div>*/}
-
-                {/*    </div>*/}
-                {/*    <div className="col-md-3 col-sm-3 mission-height-landing site-tertiary-bg-color" >*/}
-                {/*        <div style={{ paddingTop: 20 }} >*/}
-                {/*            <a href="/"><p className="large-text">Programs & Projects</p></a>*/}
-                {/*            <p className="small-text"> Our goal, vision , mission</p>*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-                {/*    <div className="col-md-3 col-sm-3 mission-height-landing site-suppliment-bg-color" >*/}
-                {/*        <div style={{ paddingTop: 20 }} >*/}
-                {/*            <a href="/event"><p className="large-text"> Our Events</p></a>*/}
-                {/*            <p className="small-text">Register & Help Make Change</p>*/}
-                {/*        </div>*/}
-
-                {/*    </div>*/}
-                {/*    <div className="col-md-3 mission-height-landing site-primary-bg-color"  >*/}
-                {/*        <div style={{ paddingTop: 20 }} >*/}
-                {/*            <a href="/support"><p className="large-text">Get Involved</p></a>*/}
-                {/*            <p className="small-text"> Volunteer, Participate, or Donate</p>*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
             </div>
 
                 {/* Latest news section */}
@@ -231,35 +205,33 @@ function LandingPage(props) {
                     <div className="card-container">
 
                         <div className="row" >
-                            <div className="col-md-4 mb-2">
-                                <Card className="text-center" >
-                                    <div className="center" style={{paddingTop: '20px'}}>
-                                        <Image src={testimonialB} style={styles.testimonialStyle} height="210px"  width="210px" className="center" roundedCircle />
-                                    </div>
+                            <div className="col-md-4"><Card className="text-center" >
+                                <div className="center" style={{paddingTop: '20px'}}>
+                                    <Image src={testimonialB} style={styles.testimonialStyle} height="210px"  width="210px" className="center" roundedCircle />
+                                </div>
 
-                                    <Card.Body>
-                                        <Card.Title>Kum Rogers - me4real club 2009-2010</Card.Title>
-                                        <blockquote className="blockquote mb-0">
+                                <Card.Body>
+                                    <Card.Title>Kum Rogers - me4real club 2009-2010</Card.Title>
+                                    <blockquote className="blockquote mb-0">
 
-                                            <footer className="blockquote-footer">
-                                                At first I did not understand what they meant by 'me4real' until I attended a
-                                                club meeting organized by the coordinator. While at the seminar reflecting on
-                                                the phrase "me for real", I realized that I was actually speaking  to my own very-self,
-                                                telling myself who I am and suddenly confidence and boldness came upon me like a rushing
-                                                stream and overpowered the timidity that was inside of me.
-                                                What completely  made me whole was when  I moved up to the coordinator complaining
-                                                of my family financial situation which was a hindrance to me getting admission into
-                                                P&T (National Institute of Post and Telecommunications) school. The coordinator said,
-                                                "Rogers do not worry about what only God can handle. Do your part - worry about your
-                                                own duty i.e. how you will write and pass the entrance."  This phrase changed my
-                                                mentality and now I am a graduate of P&T school knowing who I am, and what to do.
-                                                Thank God for ME4REAL.
-                                            </footer>
-                                        </blockquote>
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                            <div className="col-md-4 mb-2">
+                                        <footer className="blockquote-footer">
+                                            At first I did not understand what they meant by 'me4real' until I attended a
+                                            club meeting organized by the coordinator. While at the seminar reflecting on
+                                            the phrase "me for real", I realized that I was actually speaking  to my own very-self,
+                                            telling myself who I am and suddenly confidence and boldness came upon me like a rushing
+                                            stream and overpowered the timidity that was inside of me.
+                                            What completely  made me whole was when  I moved up to the coordinator complaining
+                                            of my family financial situation which was a hindrance to me getting admission into
+                                            P&T (National Institute of Post and Telecommunications) school. The coordinator said,
+                                            "Rogers do not worry about what only God can handle. Do your part - worry about your
+                                            own duty i.e. how you will write and pass the entrance."  This phrase changed my
+                                            mentality and now I am a graduate of P&T school knowing who I am, and what to do.
+                                            Thank God for ME4REAL.
+                                        </footer>
+                                    </blockquote>
+                                </Card.Body>
+                            </Card> </div>
+                            <div className="col-md-4">
                                 <Card className="text-center">
                                     <div className="center" style={{ paddingTop: '20px' }}>
                                         <Image src={testimonialA} style={styles.testimonialStyle} height="210px" width="210px" className="center rounded-circle"/>
@@ -288,37 +260,35 @@ function LandingPage(props) {
                                 </Card>
                             </div>
 
-                            <div className="col-md-4 mb-2">
-                                <Card className="text-center">
-                                    <div className="center" style={{ paddingTop: '20px' }}>
-                                        <Image src={testimonialC} style={styles.testimonialStyle} height="210px" width="210px" className="center" roundedCircle />
-                                    </div>
+                            <div className="col-md-4"><Card className="text-center">
+                                <div className="center" style={{ paddingTop: '20px' }}>
+                                    <Image src={testimonialC} style={styles.testimonialStyle} height="210px" width="210px" className="center" roundedCircle />
+                                </div>
 
-                                    <Card.Body>
-                                        <Card.Title>Phebe Mbafor - The EHS Experiece</Card.Title>
+                                <Card.Body>
+                                    <Card.Title>Phebe Mbafor - The EHS Experiece</Card.Title>
 
-                                        <blockquote className="blockquote mb-0">
+                                    <blockquote className="blockquote mb-0">
 
-                                            <footer className="blockquote-footer">
-                                                I was invited for EHS, after having a hurtful past, and my life filled with chaos.
-                                                The two most important sessions to me were going back in order to go forward and
-                                                journey through the wall. Going back is something I never wanted to do because I
-                                                was just too scared of what I would find. This lesson made me see how much bitterness,
-                                                anger and hatred I had first for me and then for others, and I had to finally start
-                                                dealing with those emotions. I learned to start forgiving myself and loving myself
-                                                and then others who had hurt me. In journeying through the wall, I had to stop letting
-                                                go and start letting God. it was a painful week for me but at the end of the week
-                                                I was like a new person and from there even my intimacy with God grew. The daily
-                                                office was a mystery to me at first, but now I can’t seem to stop. I discovered
-                                                at what stage of maturity I was, where I am right now and where I am going. I thank
-                                                God for Pete and Geri and most especially for Delphine Fanfon, my facilitator.
-                                                God bless EHS my MIRACLE GIFT.
+                                        <footer className="blockquote-footer">
+                                            I was invited for EHS, after having a hurtful past, and my life filled with chaos.
+                                            The two most important sessions to me were going back in order to go forward and
+                                            journey through the wall. Going back is something I never wanted to do because I
+                                            was just too scared of what I would find. This lesson made me see how much bitterness,
+                                            anger and hatred I had first for me and then for others, and I had to finally start
+                                            dealing with those emotions. I learned to start forgiving myself and loving myself
+                                            and then others who had hurt me. In journeying through the wall, I had to stop letting
+                                            go and start letting God. it was a painful week for me but at the end of the week
+                                            I was like a new person and from there even my intimacy with God grew. The daily
+                                            office was a mystery to me at first, but now I can’t seem to stop. I discovered
+                                            at what stage of maturity I was, where I am right now and where I am going. I thank
+                                            God for Pete and Geri and most especially for Delphine Fanfon, my facilitator.
+                                            God bless EHS my MIRACLE GIFT.
 
-                                            </footer>
-                                        </blockquote>
-                                    </Card.Body>
-                                </Card>
-                            </div>
+                                        </footer>
+                                    </blockquote>
+                                </Card.Body>
+                            </Card> </div>
                         </div>
                     </div>
 

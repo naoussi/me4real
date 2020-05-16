@@ -4,90 +4,77 @@ import './gallery.css'
 const gutter = 2;
 
 const images = [
-    { src: '/cardbg.png', thumbnail: '/cardbg.png', caption: "not working",
-        style:{
-            boxSizing: 'border-box',
-            float: 'center',
-            flex: 1,
-            width:'50%',
-            overflow: 'hidden',
-            ':hover': {
-                opacity: 0.9,
-            },
-        }
+    { 
+        src: '/galery/galery3.jpg', thumbnail: '/galery/galery3.jpg', caption: "Slider 1",
     },
-    { src: 'carousel.jpg', thumbnail: 'carousel.jpg', caption: "second",
-        style: {
-            boxSizing: 'border-box',
-            float: 'center',
-            flex: 1,
-            width: '50%',
-
-            overflow: 'hidden',
-            ':hover': {
-                opacity: 0.9,
-            },
-        }
+    {
+        src: '/galery/galery10.jpg', thumbnail: '/galery/galery10.jpg', caption: "not working",
     },
-    { src: 'slider1.jpg', thumbnail: 'slider1.jpg', caption: "Slider 1",
-        style: {
-            backgroundColor: '#eee',
-            boxSizing: 'border-box',
-            float: 'left',
-            margin: gutter,
-            overflow: 'hidden',
-            paddingBottom: '16%',
-            position: 'relative',
-            width: `calc(25% - ${gutter * 2}px)`,
-            ':hover': {
-                opacity: 0.9,
-            },
-        }
+    {
+        src: '/galery/galery12.jpg', thumbnail: '/galery/galery12.jpg', caption: "not working",
     },
-    { src: 'slider2.jpg', thumbnail: 'slider2.jpg', caption: "Slider 2",
-            style: {
-            backgroundColor: '#eee',
-            boxSizing: 'border-box',
-            float: 'left',
-            margin: gutter,
-            overflow: 'hidden',
-            paddingBottom: '16%',
-            position: 'relative',
-            width: `calc(43% + ${gutter * 2}px)`,
-            ':hover': {
-                opacity: 0.9,
-            },
-        }
+    {
+        src: '/galery/galery13.jpg', thumbnail: '/galery/galery13.jpg', caption: "not working",
     },
-    { src: 'slider3.jpg', thumbnail: 'slider3.jpg', caption: "Slider 3",
-        style: {
-            backgroundColor: '#eee',
-            boxSizing: 'border-box',
-            float: 'left',
-            margin: gutter,
-            overflow: 'hidden',
-            paddingBottom: '16%',
-            position: 'relative',
-            width: `calc(31% + ${gutter * 0.5}px)`,
-            ':hover': {
-                opacity: 0.9,
-            },
-        }
+    {
+        src: '/galery/galery14.JPG', thumbnail: '/galery/galery14.JPG', caption: "not working",
     },
-    { src: 'slider4.jpg', thumbnail: 'slider4.jpg', caption: "Slider 4",
-        style: {
-            boxSizing: 'border-box',
-            float: 'left',
-            margin: gutter,
-            overflow: 'hidden',
-            paddingBottom: '16%',
-            position: 'relative',
-            width: `calc(25% - ${gutter * 2}px)`,
-            
-            ':hover': {
-                opacity: 0.9,
-            },
-        }
+    {
+        src: '/galery/galery15.JPG', thumbnail: '/galery/galery15.JPG', caption: "not working",
+    },
+    {
+        src: '/galery/galery1.jpg', thumbnail: '/galery/galery1.jpg', caption: "not working",
+    },
+    { 
+        src: '/galery/galery2.jpg', thumbnail: '/galery/galery2.jpg', caption: "second",
+    },
+    {
+        src: '/galery/galery4.jpg', thumbnail: '/galery/galery4.jpg', caption: "Slider 2",
+    },
+    { 
+        src: '/galery/galery5.jpg', thumbnail: '/galery/galery5.jpg', caption: "Slider 3",
+    },
+    { 
+        src: '/galery/galery6.jpg', thumbnail: '/galery/galery6.jpg', caption: "Slider 4",
+    },
+    { 
+        src: '/galery/galery7.jpg', thumbnail: '/galery/galery7.jpg', caption: "Slider 4",
+    },
+    { 
+        src: '/galery/galery8.jpg', thumbnail: '/galery/galery8.jpg', caption: "Slider 4",
+    },
+    { 
+        src: '/galery/galery9.jpg', thumbnail: '/galery/galery9.jpg', caption: "Slider 4",
+    },
+    { 
+        src: '/galery/galery11.jpg', thumbnail: '/galery/galery11.jpg', caption: "Slider 4",
+    },
+    { 
+        src: '/galery/galery16.JPG', thumbnail: '/galery/galery16.JPG', caption: "Slider 4",
+    },
+    { 
+        src: '/galery/galery17.JPG', thumbnail: '/galery/galery17.JPG', caption: "Slider 4",
+    },
+    { 
+        src: '/galery/galery18.JPG', thumbnail: '/galery/galery18.JPG', caption: "Slider 4",
+    },
+    { 
+        src: '/galery/galery19.JPG', thumbnail: '/galery/galery19.JPG', caption: "Slider 4",
+    },
+    { 
+        src: '/galery/galery20.JPG', thumbnail: '/galery/galery20.JPG', caption: "Slider 4",
+    },
+    { 
+        src: '/galery/galery21.JPG', thumbnail: '/galery/galery21.JPG', caption: "Slider 4",
+    },
+    { 
+        src: '/galery/galery22.JPG', thumbnail: '/galery/galery22.JPG', caption: "Slider 4",
+    },
+    { 
+        src: '/galery/galery23.JPG', thumbnail: '/galery/galery23.JPG', caption: "Slider 4",
+    },
+    { 
+        src: '/galery/galery24.JPG', thumbnail: '/galery/galery24.JPG', caption: "Slider 4",
     },
 ];
 

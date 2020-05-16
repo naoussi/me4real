@@ -14,18 +14,8 @@ function VideoComponent(props) {
         <div className="container">
             <div className="row">
                 {[1,2,3,4,5].map((item, key)=> 
-                    <>
-                        <div className='col'>
-                            <iframe width="505" height="310" style={{padding: '10px'}}
-                                    src="https://www.youtube.com/embed/LeuMS4q3v_U"
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen></iframe>
-                            <p className='font-weight-bold' style={{marginLeft: 8}}>
-                                Demo name #{key+1}</p>
-                            <hr/>
-                        </div>
-                    </>
+
+<iframe width="505" height="310" style={{padding: '10px'}} src="https://www.youtube.com/embed/LeuMS4q3v_U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 )}
             </div>
         </div>

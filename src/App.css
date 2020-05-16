@@ -333,6 +333,10 @@ border-color:rgb(204, 204, 204)
   margin: 0;
   padding: 60px 60px 0px;
 }
+.card-deck .card{
+/*override the margin left property on small screens*/
+     margin-left: 0 !important;
+}
 }
 
 @media (max-width: 575){
@@ -364,7 +368,7 @@ border-color:rgb(204, 204, 204)
 @media (min-width: 576px){
   .card-columns {
       column-count: 3;
-      /* -webkit-column-gap: 2.7rem; */
+      /* -webkit-column-gap: 2.7rem; 
       -moz-column-gap: 1.25rem;
       grid-column-gap: 1.25rem;
       /* column-gap: 2.7rem !important; */
