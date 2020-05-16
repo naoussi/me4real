@@ -411,8 +411,16 @@ border-color:rgb(204, 204, 204)
   .btn-right{
     padding-left: 85px;
   }
-}
+  .card-dimentions {
+    width: 310 !important;
+    height: 18rem;
+  }
 
+}
+.card-dimentions {
+  width: 363;
+  height: 18rem;
+}
 
 .elmt {
   padding: 30px 0px;

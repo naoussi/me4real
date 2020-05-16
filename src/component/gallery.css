@@ -24,15 +24,15 @@
             display: flex;
             flex-flow: column;
         }
-        article:nth-of-type(1) .row {
+        article:nth-of-type(1) .gal-row {
             flex:1 100px;
             display: flex;
             flex-flow: row;
             align-items: center;
             justify-content: space-between;
         }
-        .row {
-                        margin: 5px;
+        .gal-row {
+            margin: 5px;
             padding: 10px;
             flex:1 100px;
             display: flex;

@@ -108,7 +108,7 @@ export default class Gallery extends React.Component {
 
                             <section style={{display: 'flex'}}>
                                 <article>
-                                    <div class="row">
+                                    <div class="gal-row">
                                         <div class="inner-container">
                                                 <img
                                             onMouseEnter={() => this.mouseenter()}
@@ -149,7 +149,7 @@ export default class Gallery extends React.Component {
 
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="gal-row">
 
                                     <img
                                         onMouseEnter={() => this.mouseenter()}
@@ -168,7 +168,7 @@ export default class Gallery extends React.Component {
                                 </article>
 
                                 <article>
-                                    <div className="row">
+                                    <div className="gal-row">
 
                                         <img
                                         onMouseEnter={() => this.mouseenter()}
@@ -184,7 +184,7 @@ export default class Gallery extends React.Component {
                                         }}
                                         />
                                     </div>
-                                    <div className="row">
+                                    <div className="gal-row">
                                 <img
                                     onMouseEnter={() => this.mouseenter()}
                                     onMouseLeave={() => this.mouseenter()} onClick={() => this.toggleLightbox(5)} key={5}

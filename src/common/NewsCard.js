@@ -20,7 +20,7 @@ function NewsCard(props) {
             {/*        </small> *!/*/}
             {/*    </Card.Body>*/}
             {/*</Card>*/}
-            <div className="card" style={{width: 363, height: "18rem"}}>
+            <div className="card card-dimentions" style={{width: 363, height: "18rem"}}>
                 <img className="card-img-top" src={newsItem.image} alt="Card image cap"/>
                 <div className="card-body">
                     <h5 className="card-title text-dark">
