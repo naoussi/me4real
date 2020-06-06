@@ -3,7 +3,12 @@ import '../App.css'
 import {Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 function EventCard(props) {
-    const [ hover , setHover] = useState(false)
+    const [ hover , setHover] = useState(false);
+
+    const goToEventsPage = (id) => {
+        window.location = `/event/${id}`;
+    };
+
     return(
         <div style={{ display: "flex", justifyContent: 'center' }}>
 
@@ -20,11 +25,16 @@ function EventCard(props) {
                     </div>
                 </div>
                 <div className="_3qhs" >
-                        <div className="_153IM" onMouseDown={() => { console.log("hovering"); setHover(true) }} onMouseLeave={() => setHover(false)}>
-                        <div className="event-item-title"> <p >Lecture: The gender play gap</p></div>
-                        <div className="event-item-title"> &nbsp;/&nbsp;</div>
-                        <div className="event-item-location"> San Francisco</div>
-                    </div>
+                        <div className="_153IM"
+                             onClick={() => goToEventsPage(props.id)}
+                             onMouseOver={() => { console.log("hovering"); setHover(true) }}
+                             onMouseLeave={() => setHover(false)}>
+
+                            <div className="event-item-title"> <p >Lecture: The gender play gap</p></div>
+                            <div className="event-item-title"> &nbsp;/&nbsp;</div>
+                            <div className="event-item-location"> San Francisco</div>
+
+                        </div>
                         {hover && <div style={{ display: 'block' }}>
                             <div><span>Dec 19, 2022, 8:00 PM </span> </div>
                             <span>San Francisco, San Francisco, CA, USA</span>

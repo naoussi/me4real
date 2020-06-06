@@ -5,11 +5,20 @@ import { FaUser, FaPhone, FaGlobe } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import phebe from "../images/phebe.jpg";
 import $ from 'jquery';
+import womenImg from '../images/IMG-20200110-WA0023.jpg';
+
+import imgA from '../images/pics/kids4real.jpg';
+import imgB from '../images/pics/adolescent clubs.jpg';
+import imgC from '../images/pics/emotionaly healthy relationshipsJPG.jpg';
+import imgD from '../images/pics/Conselling center.jpg';
+import imgE from '../images/pics/food_pantry2.jpg'
+
+const MAIN_IMGS = [imgA, imgB, imgC, imgD, imgD, imgE];
 
 const achievements = [
     {
         title: "Kids4Real",
-        image: {phebe},
+        image: {imgA},
         info: "Through kids4real programs in Bamenda and Yaoundé, " +
             "about 2640 kids including street children between ages 5 to 11" +
             " have been taught to practice the pillars of good character from " +
@@ -20,14 +29,14 @@ const achievements = [
     },
     {
         title: "Adolescent Club",
-        image: {phebe},
+        image: {imgB},
         info: "Over the years, the Me4real adolescents’ clubs have imparted about 500 adolescents with knowledge to " +
             "internalize positive values and develop skills that will guide them to become good decision makers and " +
             "responsible citizens.\n"
     },
     {
         title: "Emotional and Health Discipleship Course",
-        image: {phebe},
+        image: {imgC},
         info: "Over the years, the Me4real adolescents’ clubs have imparted about 500 adolescents with knowledge to " +
             "internalize positive values and develop skills that will guide them to become good decision makers and " +
             "responsible citizens.\n"
@@ -46,7 +55,7 @@ const achievements = [
     },
     {
         title: "Me4Real Counselling Center",
-        image: {phebe},
+        image: {imgD},
         info: "With our mental health services, Children have demonstrated a greater ability to live out their true" +
             " selves as they grow, believing that they are good enough and special. By a combination of rest, " +
             "individual/group counselling sessions, stress relieving activities and skills development, " +
@@ -63,6 +72,15 @@ const achievements = [
     }
 ];
 
+const styles = {
+    imgStyles: {
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center',
+        objectFit: "cover"
+    }
+};
+
 
 class AchievementsSection extends Component {
     constructor(props) {
@@ -71,7 +89,8 @@ class AchievementsSection extends Component {
             achievement: {
                 title: '',
                 imageURL: '',
-                info: ''
+                info: '',
+                imageIdx: 0,
             }
         }
     }
@@ -82,13 +101,14 @@ class AchievementsSection extends Component {
     //    )
     // };
 
-    showModal = (title, imageURL, info) => {
+    showModal = (title, imageURL, info, imageIdx) => {
         this.setState((prevState) => ({
             ...prevState,
             achievement: {
                 title: title,
                 imageURL: imageURL,
-                info: info
+                info: info,
+                imageIdx: imageIdx
             }
         }), () => {
 
@@ -113,11 +133,11 @@ class AchievementsSection extends Component {
 
     render() {
         // const {achievementInfoModal} = this.achievementInfoModal();
-        let smallestInfoLength = 75;
+        let smallestInfoLength = 100;
         let maxAchievementTitleLength = 35;
         let stateAchievement = this.state.achievement;
         return (
-            <div className='mb-4'>
+            <div className='mb-2'>
                 <div className="modal fade" id="achievementModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                      aria-hidden="true">
                     <div className="modal-dialog modal-dialog-scrollable">
@@ -131,7 +151,7 @@ class AchievementsSection extends Component {
                                         <span className="text-white" aria-hidden="true">&times;</span>
                                     </button>
                             </h5>
-                            <img src={phebe} className='img-fluid'/>
+                            <img style={styles.imgStyles} src={MAIN_IMGS[stateAchievement.imageIdx]} className='img-fluid'/>
                             <div className="modal-body">
                                 {stateAchievement.info}
                             </div>
@@ -146,10 +166,10 @@ class AchievementsSection extends Component {
                     <div className='card-deck'>
                         <div className='row'>
                             {
-                                achievements.map((achievement) => (
+                                achievements.map((achievement, idx) => (
                                     <div className='col-sm-6 col-md-4 mb-2'>
                                         <div className="card">
-                                            <img src={phebe} className="card-img-top" alt="..."/>
+                                            <img style={styles.imgStyles} src={idx < MAIN_IMGS.length ? MAIN_IMGS[idx] : phebe} className="card-img-top" alt="..."/>
                                             <div className="card-body">
                                                 <h5 className="card-title font-weight-bold" style={{fontSize: "18px"}}>
                                                     {
@@ -169,10 +189,16 @@ class AchievementsSection extends Component {
                                                                         achievement.info.slice(0, smallestInfoLength) + " ..."
                                                                     }
                                                                 </div>
-                                                                <button className='btn btn-sm btn-outline-dark btn-sm mt-2'
-                                                                        onClick={() => this.showModal(achievement.title, achievement.image, achievement.info)}>
-                                                                    see more
-                                                                </button>
+                                                                <div className='row'>
+                                                                    <div className='col'/>
+                                                                    <div className='col-6 text-center'>
+                                                                        <button className='btn btn-sm btn-outline-dark btn-sm mt-2'
+                                                                                onClick={() => this.showModal(achievement.title, achievement.image, achievement.info, idx)}>
+                                                                            see more
+                                                                        </button>
+                                                                    </div>
+                                                                    <div className='col'/>
+                                                                </div>
                                                             </>
                                                         )
                                                     }
@@ -196,15 +222,6 @@ function SupportUs(props) {
         window.scrollTo(0, 0)
 
     }, [props.location.pathname]);
-
-    const styles = {
-        imgStyles: {
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center center',
-            objectFit: "cover"
-        }
-    }
 
     // let smallLestInfoLength = Number.MAX_SAFE_INTEGER;
     // achievements.forEach((achievement) => {
@@ -231,25 +248,29 @@ function SupportUs(props) {
 
                 <Jumbotron fluid style={{margin: 0, backgroundColor: 'white'}}>
                     <Container>
-                        <h1 style={{ textAlign: 'center' }}>Get Involved</h1>
-                        <p style={{ lineHeight: '1.5em', textAlign: 'center' }}>
-                            I'm a paragraph. Click here to add your own text and edit me. I’m a great place
-                            <br /> for you to tell a story and let your users know a little more about you..
-                            <br />
-                            <Button variant="warning" style={{ textAlign: 'center', marginTop: '10px' }}><Link to="/event"> See our Events </Link></Button>
-                        </p>
+                        <h1 style={{ textAlign: 'center' }}>Some Of Our Achievements</h1>
 
                     </Container>
                 </Jumbotron>
             </section>
 
                 <AchievementsSection/>
-
+                <div className='container mb-4'>
+                    <div className='row'>
+                        <div className='col'/>
+                        <div className='col text-center'>
+                            <button className="btn btn-lg btn-warning" style={{ textAlign: 'center', marginTop: '10px' }}>
+                                <Link to="/event"> See our Events </Link>
+                            </button>
+                        </div>
+                        <div className='col'/>
+                    </div>
+                </div>
             {/* about us image section image on the right Our mission*/}
             <section>
                 <div className="row">
                     <div className="col-md-12" style={{ height: '525px', padding: 0 }}>
-                        <img src="splash.jpg" style={styles.imgStyles} height='525px' width="100%" />
+                        <img src={womenImg} style={styles.imgStyles} height='525px' width="100%" />
                     </div>
 
                 </div>
@@ -278,7 +299,12 @@ function SupportUs(props) {
                                 <FaUser variant="info"> user</FaUser>
                                 </p>
                                 <p className="large-text">In Person</p></a>
-                            <p className="small-text"> 500 Terry Francois Street <br />San Francisco, CA 94158</p>
+                            <p className="small-text">
+                                <ul>
+                                    <li>Me4real counseling center, Adjacent Hotel Jouvence, Monte Jouvence Yaoundé</li>
+                                    <li>Kids4real, Bayelle gate Mile 2 Nkwen Bamenda</li>
+                                </ul>
+                            </p>
                         </div>
 
                     </div>
@@ -296,7 +322,7 @@ function SupportUs(props) {
                                 <a className="btn btn-warning text-dark" style={{ textAlign: 'center', marginTop: 20 }}
                                     href="https://www.allegrosolutions.org/donate" target="_blank"
                                 >
-                                    Donate now
+                                    Click to give (use code <b>Me4real/DMF</b>)
                                 </a>
                             </p>
                             
@@ -309,7 +335,7 @@ function SupportUs(props) {
                                     <FaPhone variant="info"> phone</FaPhone>
                                 </p>
                             <p className="large-text">Over the Phone</p></a>
-                            <p className="small-text"> It's easy to donate offline too. <br /> Tel: 123-456-7890</p>
+                            <p className="small-text"> It's easy to donate offline too. <br /> Mobile Money Number: 681 85 86 71</p>
 
                         </div>
 

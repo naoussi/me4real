@@ -20,38 +20,39 @@ function mapStateToProps(state) {
 function Event(props) {
     useEffect(() => {
         // props.handleFetchEvents(3)
-    }, [])
-    return (<div>
-        <section>
-            <div className="site-primary-bg-color fix-height" ></div>
-
-            <div className=" mission-height site-primary-bg-color" style={{ textAlign: 'center', padding: 50 }}>
-                <a href="/"><p className="large-text" >All Events 🧐</p></a>
-            </div>
-        </section>
-        <div className="container-fluid">
+    }, []);
+    return (
+        <div>
             <section>
+                <div className="site-primary-bg-color fix-height"/>
 
-
-            {[1,2,3,4,5,6,7].map((value, key)=> <EventCard id={value} />)}
-            </section>
-
-            {/* Badge section */}
-            <section>
-
-                <div className="row mission-height site-secondary-bg-color middle" >
-                    <br />
-                    <p style={{ textAlign: 'center', paddingTop: '30px',  }}>
-                        <span className="badge-section-text" style={{ fontWeight: 'bold' }}>We Need your support today <br />
-                        </span>
-                    <Button variant="error" style={{ textAlign: 'center', marginTop: '10px' }}><Link to="/support"> Donate </Link></Button>
-
-                    </p>
+                <div className=" mission-height site-primary-bg-color" style={{ textAlign: 'center', padding: 50 }}>
+                    <a href="/"><p className="large-text" >All Events</p></a>
                 </div>
-
             </section>
+            <div className="container-fluid">
+                <section>
+                    {[1,2,3,4,5,6,7].map((value, key)=> <EventCard id={value} />)}
+                </section>
+
+                {/* Badge section */}
+                <section>
+
+                    <div className="row mission-height site-secondary-bg-color middle" >
+                        <br />
+                        <p style={{ textAlign: 'center', paddingTop: '30px',  }}>
+                            <span className="badge-section-text" style={{ fontWeight: 'bold' }}>We Need your support today <br />
+                            </span>
+                        <Button variant="dark" style={{ textAlign: 'center', marginTop: '10px' }}>
+                            <Link to="/support"> Get Involved </Link>
+                        </Button>
+
+                        </p>
+                    </div>
+
+                </section>
+            </div>
         </div>
-    </div>
     )
 }
 

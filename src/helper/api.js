@@ -255,7 +255,7 @@ export function delete_team(id) {
 /* *********************************************************************/
 export function add_blog(body, editing) {
     if (editing) {
-        return fetch(`${url}/blog/`, {
+        return fetch(`${url}/blogs/`, {
             method: 'PUT',
             headers: {
                 Accept: 'application/json',
@@ -269,7 +269,7 @@ export function add_blog(body, editing) {
 
     }
     else {
-        return fetch(`${url}/blog/`, {
+        return fetch(`${url}/blogs/`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -286,7 +286,7 @@ export function add_blog(body, editing) {
 
 //GET THE blog
 export function get_blog(max) {
-    return fetch(`${url}/blog/?max=${max}`, { headers: { Authorization: "men", "Access-Control-Allow-Origin": "*", 'Content-Type': 'application/json' } })
+    return fetch(`${url}/blogs/?max=${max}`, { headers: { Authorization: "men", "Access-Control-Allow-Origin": "*", 'Content-Type': 'application/json' } })
         .then((response) => response.json())
         .catch(err => console.log("someting happen with error ", err))
 }
@@ -294,7 +294,7 @@ export function get_blog(max) {
 
 //DELETE THE blog
 export function delete_blog(id) {
-    return axios.delete(`${url}/blog/?id=${id}`)
+    return axios.delete(`${url}/blogs/?id=${id}`)
         .then((response) => response)
         .catch(err => console.log("rrr ", err))
 }

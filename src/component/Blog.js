@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, {Component, useEffect} from 'react';
 import BlogListing from '../common/BlogListing'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -16,14 +16,38 @@ function mapStateToProps(state) {
         error: state.blog.fail
     }
 }
+
+class BlogTest extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isFetching: false,
+            data: null,
+            error: null
+        }
+    }
+
+    componentDidMount() {
+        fetch(`/api/fetch`)
+    }
+
+    render() {
+        return (
+            <div className='container'>
+
+            </div>
+        );
+    }
+}
+
 function Blog(props) {
     useEffect(() => {
         props.handleFetchBlog(20)
-    }, [])
+    }, []);
     return (
         <div>
             <section>
-                <div className="site-primary-bg-color fix-height" ></div>
+                <div className="site-primary-bg-color fix-height"/>
 
                 <div className=" mission-height site-primary-bg-color" style={{ textAlign: 'center', padding: 50 }}>
                     <a href="/"><p className="large-text"> All Blogs</p></a>

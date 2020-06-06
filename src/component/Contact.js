@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../App.css'
 import { Form, Col, Button, Spinner } from 'react-bootstrap'
 import GoogleMapReact from 'google-map-react'
+import contact from '../images/contact us.jpg';
 
 function Contact(props) {
     const [name, setName] = useState("")
@@ -109,7 +110,7 @@ function Contact(props) {
                         </div>
                     </div>
                     <div className="col-md-6" style={{ height: '600px', padding: 0 }}>
-                        <img src="generic.png" height='680px' width="100%" />
+                        <img src={contact} height='680px' width="100%" />
                     </div>
 
                 </div>
@@ -131,7 +132,7 @@ function Contact(props) {
             </section>
             <section>
                     <div style={{ paddingTop: '20px' }}>
-                        <div style={{ height: '100vh', width: '100%' }}>
+                        <div style={{ height: '60vh', width: '100%' }}>
                             <GoogleMapReact
                                 bootstrapURLKeys={{ key: "" }}
                                 defaultCenter={[34.0522, -118.2437]}

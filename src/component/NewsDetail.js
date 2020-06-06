@@ -38,9 +38,11 @@ function NewsDetail(props) {
             <div className="container-fluid ">
             <section>
                 <div className="center-items justify-content-md-center" >
-                <div className="row">
-                        { (markdownnews && markdownnews.length >0) ? <div className="col-md-8 offset-2">
-                            { <img src={markdownnews[0].image} width="100%" />}
+                    <div className="row">
+                        { (markdownnews && markdownnews.length > 0) ?
+                            <div className="col-md-8 offset-2">
+                                { <img className='mb-4' src={markdownnews[0].image} width="100%" />}
+
                              <div dangerouslySetInnerHTML={{ __html: marked(markdownnews[0].description, { sanitize: true }) }} />
 
                         </div>
@@ -49,10 +51,8 @@ function NewsDetail(props) {
                             Whoops something went wrong. Verify you are connected or have the right access to this page
                         </h2>
                         }
+                    </div>
                 </div>
-
-       
-            </div>
             </section>
             {/* Latest news section */}
             <section>

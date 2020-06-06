@@ -23,7 +23,7 @@ function LatestNews(props){
         props.handleFetchNews(3)
     }, [])
     return (
-        <div className="">
+        <div className="container">
             <h2 className="latest-news-h2"> Latest News</h2>
 
             <div className="card-container">

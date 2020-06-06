@@ -46,7 +46,7 @@ function EventDetail(params) {
                                 <Button variant="warning" onClick={() => setModalShow(true)}> RSVP</Button>
                         </div>
                         <div style={{paddingTop: '20px'}}>
-                                <div style={{ height: '100vh', width: '100%' }}>
+                                <div style={{ height: '50vh', width: '100%' }}>
                                     <GoogleMapReact
                                         bootstrapURLKeys={{ key: "" }}
                                         defaultCenter={[34.0522, -118.2437]}
