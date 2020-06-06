@@ -363,3 +363,22 @@ export function delete_video(id) {
         .then((response) => response.json())
         .catch(err => console.log(err))
 }
+
+
+// ################################## [PROGRAM AND PROJECTS END ENDPOINTS] #############################
+
+const getHeadersConfig = () => {
+    return {
+        headers: {
+            Authorization: "men", "Access-Control-Allow-Origin": "*", 'Content-Type': 'application/json'
+        }
+    }
+};
+
+export const getProjects = (max) => {
+    return fetch(`${url}/projects/?max=${max}`, getHeadersConfig())
+        .then((response) => response.json())
+        .catch((err) => {
+            console.log("[FETCH_ERROR]: Couldn't obtain programs");
+        })
+};

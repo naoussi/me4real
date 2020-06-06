@@ -24,9 +24,10 @@ import SupportUs from './component/SupportUs';
 import BlogDetails from './component/BlogDetails';
 import Blog from './component/Blog';
 import ManageVideo from './admin/ManageVideo';
+import ProgramAndProjects from "./component/ProgramAndProjects";
 
 function App() {
-  const [galery, setGalery] = useState(true)
+  const [galery, setGalery] = useState(true);
   return (
     <>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
@@ -54,6 +55,7 @@ function App() {
       <Route path='/manage/event'  component={ManageEvent} />
       <Route path='/manage/blog'  component={ManageBlog} />
       <Route path='/manage/videos'  component={ManageVideo} />
+      <Route path='/projects' component={ProgramAndProjects}/>
       <Route path="*" component={err404} />
 
       </Switch>

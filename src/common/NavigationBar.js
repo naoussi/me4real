@@ -58,16 +58,22 @@ function NavigationBar(props){
                                         News
 					                </NavLink>
                                 </li>
-                                <li>
-                                    <NavLink to='/media' exact activeClassName='active'>
-                                        PodCast
-					                </NavLink>
-                                </li>
+                                {/*<li>*/}
+                                {/*    <NavLink to='/media' exact activeClassName='active'>*/}
+                                {/*        PodCast*/}
+					            {/*    </NavLink>*/}
+                                {/*</li>*/}
 
                                 <li>
                                     <NavLink to='/video' exact activeClassName='active'>
                                         Video
 					                </NavLink>
+                                </li>
+
+                                <li>
+                                    <NavLink to='/projects' exact activeClassName='active'>
+                                        Projects
+                                    </NavLink>
                                 </li>
 
                                 <li>

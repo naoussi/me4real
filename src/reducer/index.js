@@ -4,6 +4,7 @@ import carousel from './carousel'
 import teams from './teams'
 import blog from './blog'
 import video from './video'
+import {programsAndProjects} from "./programsAndProjects";
 import {combineReducers}  from 'redux'
 
 export default combineReducers({
@@ -12,5 +13,6 @@ export default combineReducers({
     carousel,
     teams,
     blog,
-    video
+    video,
+    programsAndProjects
 })
