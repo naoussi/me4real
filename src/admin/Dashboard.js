@@ -3,6 +3,10 @@ import { Card, CardColumns} from 'react-bootstrap'
 import '../App.css'
 import { NavLink } from 'react-router-dom'
 import ManageNews from './ManageNews'
+import ManageProjectsContainer from "./projects_comp/ManageProjects";
+import {getAllProjects} from "../action/programsAndProjects";
+import {connect} from 'react-redux';
+
 function Dashboard(props) {
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -95,10 +99,34 @@ function Dashboard(props) {
                             </Card.Body>
                         </Card>
                     </NavLink>
+                    <div onClick={props.showProjectsModal} style={{cursor: "pointer"}}>
+                        <Card className="text-center" bg="warning">
+                            <Card.Body>
+                                <Card.Title>Projects</Card.Title>
+                                <Card.Text>
+                                    View and manage everything that has to do with projects
+                                </Card.Text>
+                                <Card.Text>
+                                    <small className="text-muted">Last updated 3 mins ago</small>
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </div>
             </CardColumns>
            </div>
 
         </div>
     )
 }
-export default Dashboard
+
+const mapStateToProps = (state) => ({
+    projects: state.programsAndProjects.projects
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    getAllProjects: (max) => dispatch(getAllProjects(max))
+});
+
+let finalExport = ManageProjectsContainer(Dashboard);
+
+export default connect(mapStateToProps, mapDispatchToProps)(finalExport);

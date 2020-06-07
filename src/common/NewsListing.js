@@ -19,8 +19,10 @@ function NewsListing(props) {
                             {/*    */}
                             {/*</Link>*/}
                         </div>
-                        <div className="event-text">
-                            <div dangerouslySetInnerHTML={{ __html: marked(props.id.description.length <= 400 ? props.id.description :  props.id.description.substring(0, 400), { sanitize: true }) }} />
+                        <div className='container'>
+                            <div className="event-text">
+                                <div dangerouslySetInnerHTML={{ __html: marked(props.id.description.length <= 400 ? props.id.description :  props.id.description.substring(0, 400), { sanitize: true }) }} />
+                            </div>
                         </div>
                     </div>
 

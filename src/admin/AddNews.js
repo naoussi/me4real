@@ -100,7 +100,7 @@ class AddNews extends React.Component {
                 .then((response) => response.json())
                 .then(resp => {
                     console.log("response is ", resp)
-                    callback(resp.result)
+                    callback(resp.result.url)
                     
                 })
                 .catch(err => console.log("rrr ", err))

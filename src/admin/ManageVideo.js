@@ -57,7 +57,7 @@ class ManageVideo extends React.Component {
                                     </thead>
                                     <tbody>
 
-                                        {this.props.video && this.props.viddo.map((item, index) =>
+                                        {this.props.video && this.props.video.map((item, index) =>
                                             <tr key={index}>
 
                                                 <td>{item.title}</td>
