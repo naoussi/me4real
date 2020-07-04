@@ -5,7 +5,8 @@ import teams from './teams'
 import blog from './blog'
 import video from './video'
 import {programsAndProjects} from "./programsAndProjects";
-import {combineReducers}  from 'redux'
+import {newVideosUI} from "./newVideosUI";
+import {combineReducers}  from 'redux';
 
 export default combineReducers({
     news,
@@ -14,5 +15,6 @@ export default combineReducers({
     teams,
     blog,
     video,
-    programsAndProjects
+    programsAndProjects,
+    newVideosUI
 })

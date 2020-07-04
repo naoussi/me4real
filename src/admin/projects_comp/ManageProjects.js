@@ -367,7 +367,7 @@ const ManageProjectsContainer = (ChildComponent) =>
         };
 
         componentDidMount() {
-            console.log("PROJECTS_MODAL props:", this.props);
+            // console.log("PROJECTS_MODAL props:", this.props);
             $(function () {
                 $('div#projects-modal').modal({
                     backdrop: 'static',

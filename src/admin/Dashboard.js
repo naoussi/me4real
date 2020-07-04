@@ -6,6 +6,8 @@ import ManageNews from './ManageNews'
 import ManageProjectsContainer from "./projects_comp/ManageProjects";
 import {addProject, getAllProjects} from "../action/programsAndProjects";
 import {connect} from 'react-redux';
+import ManageVideosContainer from "./videos_comp/ManageVideos";
+import {fetchAllVideos} from "../action/videosActions";
 
 function Dashboard(props) {
     useEffect(() => {
@@ -60,7 +62,7 @@ function Dashboard(props) {
                             </Card.Body>
                         </Card>
                     </NavLink>
-                    <NavLink to='/manage/videos'  >
+                    <div onClick={props.showVideoModal} style={{cursor: "pointer"}}>
                         <Card className="text-center" bg="warning">
                             <Card.Body>
                                 <Card.Title>Videos</Card.Title>
@@ -72,7 +74,7 @@ function Dashboard(props) {
                                 </Card.Text>
                             </Card.Body>
                         </Card>
-                    </NavLink>
+                    </div>
                     <NavLink to='/manage/event'  >
                         <Card className="text-center" bg="warning">
                             <Card.Body>
@@ -121,14 +123,17 @@ function Dashboard(props) {
 
 const mapStateToProps = (state) => ({
     projects: state.programsAndProjects.projects,
-    posting: state.programsAndProjects.posting
+    posting: state.programsAndProjects.posting,
+    allVideos: state.newVideosUI.videos
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getAllProjects: (max) => dispatch(getAllProjects(max)),
-    addProject: (title, description, image, rank) => dispatch(addProject(title, description, image, rank))
+    addProject: (title, description, image, rank) => dispatch(addProject(title, description, image, rank)),
+    fetchAllVideos: (max) => dispatch(fetchAllVideos(max))
 });
 
 let finalExport = ManageProjectsContainer(Dashboard);
+finalExport = ManageVideosContainer(finalExport);
 
 export default connect(mapStateToProps, mapDispatchToProps)(finalExport);
