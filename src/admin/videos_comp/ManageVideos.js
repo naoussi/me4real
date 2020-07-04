@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import $ from 'jquery';
+import VideosTableView from "./VideosTableView";
 
 const ManageVideosContainer = (ChildComponent) =>
     class ManageVideos extends Component {
@@ -127,11 +128,12 @@ const ManageVideosContainer = (ChildComponent) =>
                             </div>
                         ) :
                         videos.data && videos.data.length > 0 ? (
-                            <div className="alert alert-info">
-                                <div className="text-center">
-                                    {"Data loaded".toUpperCase()}
-                                </div>
-                            </div>
+                            <>
+                                <VideosTableView
+                                    videosData={videos.data}
+                                    videosRefreshHandler={this.handleVideosViewRefresh}
+                                    />
+                            </>
                         ) : (
                             <div className='alert alert-dark text-center zoomIn'>
                                 <h4 className='text-center'>No videos available</h4>
@@ -174,6 +176,17 @@ const ManageVideosContainer = (ChildComponent) =>
                 console.log("Posting:", {title, link, rank});
                 this.props.addVideo(title, link, rank);
             })
+        };
+
+        handleClearInfoMessage = () => {
+            this.setState((prevState) => ({
+                ...prevState,
+                addVideos: {
+                    isAdding: false,
+                    data: null,
+                    error: null
+                }
+            }))
         };
 
         handleVideosCreate = () => {
