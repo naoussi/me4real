@@ -14,6 +14,16 @@ const ManageVideosContainer = (ChildComponent) =>
                     isFetching: false,
                     data: [],
                     error: null
+                },
+                newVideoData: {
+                    title: '',
+                    link: '',
+                    rank: ''
+                },
+                addVideos: {
+                    isAdding: false,
+                    data: null,
+                    error: null
                 }
             }
         }
@@ -28,6 +38,16 @@ const ManageVideosContainer = (ChildComponent) =>
                         error: nextProps.allVideos.error
                     }
                 }))
+            }
+            if (nextProps.addVideos && this.state.addVideos.isAdding) {
+                this.setState((prevState) => ({
+                    ...prevState,
+                    addVideos: {
+                        ...nextProps.addVideos,
+                    }
+                }), () => {
+                    console.log("UPDATED__ADD_VIDEOS:", this.state.addVideos)
+                })
             }
         }
 
@@ -128,28 +148,105 @@ const ManageVideosContainer = (ChildComponent) =>
         };
 
         handleVideoCreateInputFieldChange = (evt) => {
+            const name = $(evt.target).attr("name");
+            const value = $(evt.target).val();
 
+            this.setState((prevState) => ({
+                ...prevState,
+                newVideoData: {
+                    ...prevState.newVideoData,
+                    [name]: value
+                }
+            }));
+        };
+
+        handleVideoSubmission = (evt) => {
+            evt.preventDefault();
+            const {title, link, rank} = this.state.newVideoData;
+
+            this.setState((prevState) => ({
+                ...prevState,
+                addVideos: {
+                    ...prevState.addVideos,
+                    isAdding: true,
+                }
+            }), () => {
+                console.log("Posting:", {title, link, rank});
+                this.props.addVideo(title, link, rank);
+            })
         };
 
         handleVideosCreate = () => {
             return (
                 <div className="container">
 
-                    <form>
-                        <div className="form-group">
-                            <input type="text" className="form-control"
-                                    placeholder="Enter project title"
-                                    name="title"
-                                    required="required"/>
-                        </div>
-                        <div className="form-group">
-                            <input type="text" className="form-control"
-                                    placeholder="Enter video URL"
-                                    name="videoURL"
-                                    required="required"
-                            />
-                        </div>
-                    </form>
+                    {
+                        this.state.addVideos.isAdding ? (
+                            <div className="text-center">
+                                <div className="spinner-border" role="status">
+                                    <span className="sr-only">Posting data ...</span>
+                                </div>
+                                <br/>
+                                <span>
+                                    <b className='small font-weight-bold'>Posting video data</b>
+                                </span>
+                            </div>
+                        ) :
+                        (this.state.addVideos.error) ? (
+
+                            <div className='alert alert-danger border-danger text-center zoomIn'>
+                                <h4>Post failed</h4>
+                                <br/>
+                                <button className="btn btn-sm btn-danger mt-2" onClick={this.handleClearInfoMessage}>
+                                    Reset and input
+                                </button>
+                            </div>
+                        ) : (this.state.addVideos.data) ? (
+
+                            <div className='alert alert-success border-success text-center zoomIn'>
+                                <h5>Posted new project to database</h5>
+                                <button className="btn btn-sm btn-outline-success mt-2" onClick={this.handleClearInfoMessage}>
+                                    Reset and input
+                                </button>
+                            </div>
+                        ) : (
+                            <form onSubmit={this.handleVideoSubmission}>
+                                <div className="form-group">
+                                    <input type="text" className="form-control"
+                                           placeholder="Enter project title"
+                                           name="title"
+                                           required="required"
+                                           onChange={this.handleVideoCreateInputFieldChange}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <input type="text" className="form-control"
+                                           placeholder="Enter video URL"
+                                           name="link"
+                                           required="required"
+                                           onChange={this.handleVideoCreateInputFieldChange}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <input type="number" className="form-control"
+                                           placeholder="Enter rank"
+                                           name="rank"
+                                           required="required"
+                                           onChange={this.handleVideoCreateInputFieldChange}
+                                    />
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-3"/>
+                                    <div className="col-md-6">
+                                        <button type="submit" className="btn btn-block btn-primary btn-sm">
+                                            Add video
+                                        </button>
+                                    </div>
+                                    <div className="col-md-3"/>
+                                </div>
+                            </form>
+                        )
+                    }
 
                 </div>
             )

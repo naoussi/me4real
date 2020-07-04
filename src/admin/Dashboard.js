@@ -7,7 +7,7 @@ import ManageProjectsContainer from "./projects_comp/ManageProjects";
 import {addProject, getAllProjects} from "../action/programsAndProjects";
 import {connect} from 'react-redux';
 import ManageVideosContainer from "./videos_comp/ManageVideos";
-import {fetchAllVideos} from "../action/videosActions";
+import {addVideo, fetchAllVideos} from "../action/videosActions";
 
 function Dashboard(props) {
     useEffect(() => {
@@ -124,13 +124,15 @@ function Dashboard(props) {
 const mapStateToProps = (state) => ({
     projects: state.programsAndProjects.projects,
     posting: state.programsAndProjects.posting,
-    allVideos: state.newVideosUI.videos
+    allVideos: state.newVideosUI.allVideos,
+    addVideos: state.newVideosUI.addVideos
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getAllProjects: (max) => dispatch(getAllProjects(max)),
     addProject: (title, description, image, rank) => dispatch(addProject(title, description, image, rank)),
-    fetchAllVideos: (max) => dispatch(fetchAllVideos(max))
+    fetchAllVideos: (max) => dispatch(fetchAllVideos(max)),
+    addVideo: (title, link, rank) => dispatch(addVideo(title, link, rank))
 });
 
 let finalExport = ManageProjectsContainer(Dashboard);
