@@ -1,7 +1,5 @@
 import React, {Component} from "react";
-import $ from 'jquery'
-import {getAllProjects} from "../../action/programsAndProjects";
-import {connect} from 'react-redux';
+import $ from 'jquery';
 
 const ManageProjectsContainer = (ChildComponent) =>
     class ManageProjects extends Component {
@@ -28,6 +26,9 @@ const ManageProjectsContainer = (ChildComponent) =>
                     isPosting: false,
                     success: false,
                     error: null
+                },
+                imageUpload: {
+                    isLoading: false,
                 }
             }
         }
@@ -104,7 +105,7 @@ const ManageProjectsContainer = (ChildComponent) =>
             )
         };
 
-        handleClearError = () => {
+        handleClearInfoMessage = () => {
             this.setState((prevState) => ({
                 ...prevState,
                 posting: {
@@ -139,7 +140,7 @@ const ManageProjectsContainer = (ChildComponent) =>
                                <h4>Post failed</h4>
                                <kbd>{error ? error.failed_msg : ''}</kbd>
                                <br/>
-                               <button className="btn btn-sm btn-danger mt-2" onClick={this.handleClearError}>
+                               <button className="btn btn-sm btn-danger mt-2" onClick={this.handleClearInfoMessage}>
                                    Reset and input
                                </button>
                            </div>
@@ -147,7 +148,10 @@ const ManageProjectsContainer = (ChildComponent) =>
                        ) : (this.state.posting.success) ? (
 
                            <div className='alert alert-success border-success text-center zoomIn'>
-                               <h4>Posted new project to database</h4>
+                               <h5>Posted new project to database</h5>
+                               <button className="btn btn-sm btn-outline-success mt-2" onClick={this.handleClearInfoMessage}>
+                                   Reset and input
+                               </button>
                            </div>
 
                        ) : (
@@ -175,12 +179,29 @@ const ManageProjectsContainer = (ChildComponent) =>
                                    />
                                </div>
                                <div className="form-group">
-                                   <input type="file" placeholder="Choose image" className="form-control-file"
-                                          id="exampleFormControlFile1"
-                                          required='required'
-                                          name='file'
-                                          onChange={this.handleInputFieldsChange}
-                                   />
+                                   <div className="row">
+                                       <div className="col-md-8">
+                                           <input type="file" placeholder="Choose image" className="form-control-file"
+                                                  id="exampleFormControlFile1"
+                                                  required='required'
+                                                  name='file'
+                                                  onChange={this.handleInputFieldsChange}
+                                           />
+                                       </div>
+                                       <div className="col-md-4">
+                                           <div className="ml-2">
+                                               {
+                                                   this.state.imageUpload.isLoading ? (
+                                                       <span className="badge badge-primary">Uploading image ...</span>
+                                                   ) : (
+                                                       <></>
+                                                   )
+                                               }
+                                           </div>
+                                       </div>
+                                   </div>
+
+
                                </div>
                                <button type='submit' className='btn btn-block btn-primary btn-sm'>
                                    Create project
@@ -197,15 +218,45 @@ const ManageProjectsContainer = (ChildComponent) =>
             const name = $(evt.target).attr('name');
             const value = $(evt.target).val();
 
-            this.setState((prevState) => ({
-                ...prevState,
-                newProject: {
-                    ...prevState.newProject,
-                    [name]: value
-                }
-            }), () => {
-                // console.log("New projects state:", this.state.newProject, "Name:", name, "Value:", value);
-            });
+            if (name === "file") {
+                let reader = new FileReader();
+                reader.readAsDataURL(evt.target.files[0]);
+                this.setState((prevState) => ({
+                    ...prevState,
+                    imageUpload: {
+                        ...prevState.imageUpload,
+                        isLoading: true,
+                    }
+                }), () => {
+
+                    reader.onload = (evt) => {
+                        this.setState((prevState) => ({
+                            ...prevState,
+                            newProject: {
+                                ...prevState.newProject,
+                                [name]: evt.target.result
+                            },
+                            imageUpload: {
+                                ...prevState.imageUpload,
+                                isLoading: false,
+                            }
+                        }));
+                    }
+
+                })
+            } else {
+                this.setState((prevState) => ({
+                    ...prevState,
+                    newProject: {
+                        ...prevState.newProject,
+                        [name]: value
+                    }
+                }), () => {
+                    // console.log("New projects state:", this.state.newProject, "Name:", name, "Value:", value);
+                });
+            }
+
+
 
         };
 
