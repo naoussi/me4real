@@ -395,3 +395,16 @@ export const postProject = (title, description, image, rank) => {
         .then((resp) => resp.json())
         .catch((err) => console.log("[POST_PROJECT_ERROR]:", err));
 };
+
+export const deleteProject = (id) => {
+    return fetch(`${url}/projects/?id=${id}`, {
+        method: "DELETE",
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({id})
+    })
+        .then((response) => response.json())
+        .catch((error) => {})
+};
