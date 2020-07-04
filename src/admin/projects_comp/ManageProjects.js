@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import $ from 'jquery';
+import ProjectsTableView from "./ProjectsTableView";
 
 const ManageProjectsContainer = (ChildComponent) =>
     class ManageProjects extends Component {
@@ -85,11 +86,9 @@ const ManageProjectsContainer = (ChildComponent) =>
                         ) :
 
                         projects.data && projects.data.length > 0 ? (
-                            <div className='alert alert-success border-success zoomIn'>
-                                <h4 className='text-center'>
-                                    Data obtained!
-                                </h4>
-                            </div>
+                            <>
+                                <ProjectsTableView projectsData={projects.data}/>
+                            </>
 
                         ) : (
                             <div className='alert alert-dark border-dark text-center zoomIn'>
@@ -280,8 +279,18 @@ const ManageProjectsContainer = (ChildComponent) =>
             if (newView === ManageProjects.VIEW_MANAGE) {
                 this.setState((prevState) => ({
                     ...prevState,
-                    currentView: ManageProjects.VIEW_MANAGE
-                }))
+                    currentView: ManageProjects.VIEW_MANAGE,
+                    projects: {
+                        isFetching: true,
+                        data: [],
+                        error: null
+                    }
+                }), () => {
+
+                    // Refresh the projects view every time the button is clicked.
+                    this.props.getAllProjects(10);
+
+                })
             } else {
                 this.setState((prevState) => ({
                     ...prevState,
