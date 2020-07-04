@@ -6,7 +6,11 @@ import {
 
     NEW_ADD_VIDEO_REQUEST,
     NEW_ADD_VIDEO_SUCCESS,
-    NEW_ADD_VIDEO_FAILURE
+    NEW_ADD_VIDEO_FAILURE,
+
+    NEW_DELETE_VIDEO_REQUEST,
+    NEW_DELETE_VIDEO_SUCCESS,
+    NEW_DELETE_VIDEO_FAILURE
 } from "../constant";
 
 const initialState = {
@@ -18,6 +22,11 @@ const initialState = {
     addVideos: {
         isAdding: false,
         data: null,
+        error: null
+    },
+    deleteVideo: {
+        isDeleting: false,
+        deleted: false,
         error: null
     }
 };
@@ -80,6 +89,36 @@ export const newVideosUI = (state = initialState, action) => {
                 addVideos: {
                     isAdding: false,
                     data: null,
+                    error: action.payload
+                }
+            };
+
+        case NEW_DELETE_VIDEO_REQUEST:
+            return {
+                ...state,
+                deleteVideo: {
+                    isDeleting: true,
+                    deleted: false,
+                    error: null
+                }
+            };
+
+        case NEW_DELETE_VIDEO_SUCCESS:
+            return {
+                ...state,
+                deleteVideo: {
+                    isDeleting: false,
+                    deleted: true,
+                    error: null
+                }
+            };
+
+        case NEW_DELETE_VIDEO_FAILURE:
+            return {
+                ...state,
+                deleteVideo: {
+                    isDeleting: false,
+                    deleted: false,
                     error: action.payload
                 }
             };

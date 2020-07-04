@@ -7,7 +7,7 @@ import ManageProjectsContainer from "./projects_comp/ManageProjects";
 import {addProject, getAllProjects} from "../action/programsAndProjects";
 import {connect} from 'react-redux';
 import ManageVideosContainer from "./videos_comp/ManageVideos";
-import {addVideo, fetchAllVideos} from "../action/videosActions";
+import {addVideo, deleteVideo, fetchAllVideos} from "../action/videosActions";
 
 function Dashboard(props) {
     useEffect(() => {
@@ -125,7 +125,7 @@ const mapStateToProps = (state) => ({
     projects: state.programsAndProjects.projects,
     posting: state.programsAndProjects.posting,
     allVideos: state.newVideosUI.allVideos,
-    addVideos: state.newVideosUI.addVideos
+    addVideos: state.newVideosUI.addVideos,
 });
 
 const mapDispatchToProps = (dispatch) => ({

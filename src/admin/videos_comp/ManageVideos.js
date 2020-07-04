@@ -132,7 +132,7 @@ const ManageVideosContainer = (ChildComponent) =>
                                 <VideosTableView
                                     videosData={videos.data}
                                     videosRefreshHandler={this.handleVideosViewRefresh}
-                                    />
+                                />
                             </>
                         ) : (
                             <div className='alert alert-dark text-center zoomIn'>

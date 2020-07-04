@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {v4} from "uuid";
 import {connect} from "react-redux";
+import {apiDeleteVideo} from "../../action/videosActions";
 
 const styles = {
     linkStyle: {
@@ -15,7 +16,30 @@ class VideosTableView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            videosData: []
+            videosData: [],
+            deleteVideo: {
+                _id: '',
+                isDeleting: false,
+                deleted: false,
+                error: null
+            }
+        }
+    }
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        if (nextProps.deleteVideo && this.state.deleteVideo.isDeleting) {
+
+            console.log("UPDATES DONE:", this.state);
+            this.setState((prevState) => ({
+                ...prevState,
+                deleteVideo: {
+                    ...nextProps.deleteVideo
+                }
+            }), () => {
+                if (this.state.deleteVideo.deleted) {
+                    this.props.videosRefreshHandler();
+                }
+            })
         }
     }
 
@@ -28,6 +52,21 @@ class VideosTableView extends Component {
 
     handleURLClick = (url) => {
        window.open(url);
+    };
+
+    handleVideoDelete = (evt, video) => {
+        if (window.confirm(`Sure to delete video -- ${video.title}`)) {
+            this.setState((prevState) => ({
+                ...prevState,
+                deleteVideo: {
+                    ...prevState.deleteVideo,
+                    _id: video["_id"],
+                    isDeleting: true,
+                }
+            }), () => {
+                this.props.apiDeleteVideo(video["_id"]);
+            })
+        }
     };
 
     render() {
@@ -44,6 +83,17 @@ class VideosTableView extends Component {
                         </div>
                     ) : (
                         <>
+                            {
+                                this.state.deleteVideo.isDeleting ? (
+                                    <>
+                                        <div className="spinner">
+                                            <div className="bounce1"/>
+                                            <div className="bounce2"/>
+                                            <div className="bounce3"/>
+                                        </div>
+                                    </>
+                                ) : null
+                            }
                             <div className="zoomIn">
                                 <table className="table table-sm">
                                     <thead className="thead-dark">
@@ -90,7 +140,7 @@ class VideosTableView extends Component {
                                                     <td>
                                                         <div className="card-title">
                                                             <button className="btn btn-outline-danger btn-sm"
-                                                                    onClick={(evt) => this.handleProjectDelete(evt, video)}>
+                                                                    onClick={(evt) => this.handleVideoDelete(evt, video)}>
                                                                 delete
                                                             </button>
                                                         </div>
@@ -115,4 +165,12 @@ VideosTableView.propTypes = {
     videosRefreshHandler: PropTypes.func.isRequired
 };
 
-export default VideosTableView;
+const mapStateToProps = (state) => ({
+    deleteVideo: state.newVideosUI.deleteVideo
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    apiDeleteVideo: (id) => dispatch(apiDeleteVideo(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(VideosTableView);

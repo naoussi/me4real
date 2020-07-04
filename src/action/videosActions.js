@@ -2,12 +2,17 @@ import {
     NEW_ADD_VIDEO_FAILURE,
     NEW_ADD_VIDEO_REQUEST,
     NEW_ADD_VIDEO_SUCCESS,
+
     NEW_FETCH_ALL_VIDEOS_FAILURE,
     NEW_FETCH_ALL_VIDEOS_REQUEST,
-    NEW_FETCH_ALL_VIDEOS_SUCCESS
+    NEW_FETCH_ALL_VIDEOS_SUCCESS,
+
+    NEW_DELETE_VIDEO_REQUEST,
+    NEW_DELETE_VIDEO_SUCCESS,
+    NEW_DELETE_VIDEO_FAILURE
 } from "../constant";
 
-import {add_video, get_video} from "../helper/api";
+import {add_video, delete_video, get_video} from "../helper/api";
 
 //payload is the response or data to be set to store
 function requestHelper(req, payload = null) {
@@ -48,6 +53,19 @@ export const addVideo = (title, link, rank) => {
             })
             .catch((error) => {
                 dispatch(responseHelper(NEW_ADD_VIDEO_FAILURE, error));
+            })
+    }
+};
+
+export const apiDeleteVideo = (id) => {
+    return (dispatch) => {
+        dispatch(requestHelper(NEW_DELETE_VIDEO_REQUEST));
+        return delete_video(id)
+            .then((resp) => {
+                dispatch(responseHelper(NEW_DELETE_VIDEO_SUCCESS))
+            })
+            .catch((error) => {
+                dispatch(responseHelper(NEW_DELETE_VIDEO_FAILURE))
             })
     }
 };
