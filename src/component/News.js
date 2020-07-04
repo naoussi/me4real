@@ -19,7 +19,7 @@ function mapStateToProps(state) {
 function News(props) {
     useEffect(() => {
         props.handleFetchNews(20)
-    }, [])
+    }, []);
     return (
         <div>
             <section>

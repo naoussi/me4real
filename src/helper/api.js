@@ -382,3 +382,16 @@ export const getProjects = (max) => {
             console.log("[FETCH_ERROR]: Couldn't obtain programs");
         })
 };
+
+export const postProject = (title, description, image, rank) => {
+    return fetch(`${url}/projects/`, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({title, description, image, rank})
+    })
+        .then((resp) => resp.json())
+        .catch((err) => console.log("[POST_PROJECT_ERROR]:", err));
+};

@@ -4,7 +4,7 @@ import '../App.css'
 import { NavLink } from 'react-router-dom'
 import ManageNews from './ManageNews'
 import ManageProjectsContainer from "./projects_comp/ManageProjects";
-import {getAllProjects} from "../action/programsAndProjects";
+import {addProject, getAllProjects} from "../action/programsAndProjects";
 import {connect} from 'react-redux';
 
 function Dashboard(props) {
@@ -120,11 +120,13 @@ function Dashboard(props) {
 }
 
 const mapStateToProps = (state) => ({
-    projects: state.programsAndProjects.projects
+    projects: state.programsAndProjects.projects,
+    posting: state.programsAndProjects.posting
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    getAllProjects: (max) => dispatch(getAllProjects(max))
+    getAllProjects: (max) => dispatch(getAllProjects(max)),
+    addProject: (title, description, image, rank) => dispatch(addProject(title, description, image, rank))
 });
 
 let finalExport = ManageProjectsContainer(Dashboard);

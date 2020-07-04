@@ -21,13 +21,19 @@ const ManageProjectsContainer = (ChildComponent) =>
                 newProject: {
                     title: '',
                     description: '',
-                    file: ''
+                    file: '',
+                    rank: '',
+                },
+                posting: {
+                    isPosting: false,
+                    success: false,
+                    error: null
                 }
             }
         }
 
         componentWillReceiveProps(nextProps, nextContext) {
-            if (nextProps.projects) {
+            if (nextProps.projects && this.state.projects.isFetching) {
                 this.setState((prevState) => ({
                     ...prevState,
                     projects: {
@@ -37,11 +43,33 @@ const ManageProjectsContainer = (ChildComponent) =>
                     }
                 }));
             }
+            if (nextProps.posting && this.state.posting.isPosting) {
+                this.setState((prevState) => ({
+                    ...prevState,
+                    posting: {
+                        isPosting: nextProps.posting.isPosting,
+                        success: nextProps.posting.success,
+                        error: nextProps.posting.error
+                    }
+                }));
+            }
         }
+
+        handleProjectsViewRefresh = () => {
+            this.setState((prevState) => ({
+                ...prevState,
+                projects: {
+                    ...prevState.projects,
+                    isFetching: true,
+                }
+            }), () => {
+                this.props.getAllProjects(10);
+            })
+        };
 
         handleProjectsView = (projects) => {
             return (
-                <>
+                <div className='container'>
                     {
                         projects.isFetching ? (
                             <div className="text-center">
@@ -56,52 +84,110 @@ const ManageProjectsContainer = (ChildComponent) =>
                         ) :
 
                         projects.data && projects.data.length > 0 ? (
-                            <div className='alert alert-success border-success'>
+                            <div className='alert alert-success border-success zoomIn'>
                                 <h4 className='text-center'>
                                     Data obtained!
                                 </h4>
                             </div>
 
                         ) : (
-                            <div className='alert alert-warning border-warning'>
+                            <div className='alert alert-dark border-dark text-center zoomIn'>
                                 <h4 className='text-center'>No projects available</h4>
+                                <button className='btn btn-sm border-dark btn-outline-dark mt-2'
+                                    onClick={this.handleProjectsViewRefresh}>
+                                    Refresh
+                                </button>
                             </div>
                         )
                     }
-                </>
+                </div>
             )
         };
 
+        handleClearError = () => {
+            this.setState((prevState) => ({
+                ...prevState,
+                posting: {
+                    isPosting: false,
+                    success: false,
+                    error: null
+                }
+            }));
+        };
+
         handleProjectsCreation = () => {
+            const {error} = this.state.posting;
            return (
                <div className='container'>
-                   <form onSubmit={this.handleProjectSubmission}>
-                       <div className="form-group">
-                           {/*<label htmlFor="formGroupExampleInput">Example label</label>*/}
-                           <input type="text" className="form-control" id="formGroupExampleInput"
-                                  placeholder="Enter project title" name='title' required='required'
-                                    onChange={this.handleInputFieldsChange}/>
-                       </div>
-                       <div className="form-group">
-                           {/*<label htmlFor="formGroupExampleInput2">Another label</label>*/}
-                           <textarea type="text" className="form-control" id="formGroupExampleInput2"
-                                    placeholder="Enter project description here" name='description'
-                                    required='required'
-                                    onChange={this.handleInputFieldsChange}
-                           />
-                       </div>
-                       <div className="form-group">
-                           <input type="file" placeholder="Choose image" className="form-control-file"
-                                  id="exampleFormControlFile1"
-                                  required='required'
-                                  name='file'
-                                  onChange={this.handleInputFieldsChange}
-                           />
-                       </div>
-                       <button type='submit' className='btn btn-block btn-primary btn-sm'>
-                           Create project
-                       </button>
-                   </form>
+
+                   {
+                       this.state.posting.isPosting ? (
+                           <div className="text-center">
+                               <div className="spinner-border" role="status">
+                                   <span className="sr-only">Posting data ...</span>
+                               </div>
+                               <br/>
+                               <span>
+                                    <b className='small font-weight-bold'>Posting data</b>
+                                </span>
+                           </div>
+                       ) :
+
+                       this.state.posting.error ? (
+
+                           <div className='alert alert-danger border-danger text-center zoomIn'>
+                               <h4>Post failed</h4>
+                               <kbd>{error ? error.failed_msg : ''}</kbd>
+                               <br/>
+                               <button className="btn btn-sm btn-danger mt-2" onClick={this.handleClearError}>
+                                   Reset and input
+                               </button>
+                           </div>
+
+                       ) : (this.state.posting.success) ? (
+
+                           <div className='alert alert-success border-success text-center zoomIn'>
+                               <h4>Posted new project to database</h4>
+                           </div>
+
+                       ) : (
+                           <form onSubmit={this.handleProjectSubmission} className="zoomIn">
+                               <div className="form-group">
+                                   {/*<label htmlFor="formGroupExampleInput">Example label</label>*/}
+                                   <input type="text" className="form-control" id="formGroupExampleInput"
+                                          placeholder="Enter project title" name='title' required='required'
+                                          onChange={this.handleInputFieldsChange}/>
+                               </div>
+                               <div className="form-group">
+                                   {/*<label htmlFor="formGroupExampleInput2">Another label</label>*/}
+                                   <textarea type="text" className="form-control" id="formGroupExampleInput2"
+                                             placeholder="Enter project description here" name='description'
+                                             required='required'
+                                             onChange={this.handleInputFieldsChange}
+                                   />
+                               </div>
+                               <div className="form-group">
+                                   <input type="number" className="form-control"
+                                          id="input-rank" required="required"
+                                          name="rank"
+                                          placeholder="Enter rank here"
+                                          onChange={this.handleInputFieldsChange}
+                                   />
+                               </div>
+                               <div className="form-group">
+                                   <input type="file" placeholder="Choose image" className="form-control-file"
+                                          id="exampleFormControlFile1"
+                                          required='required'
+                                          name='file'
+                                          onChange={this.handleInputFieldsChange}
+                                   />
+                               </div>
+                               <button type='submit' className='btn btn-block btn-primary btn-sm'>
+                                   Create project
+                               </button>
+                           </form>
+                       )
+                   }
                </div>
            )
         };
@@ -118,13 +204,25 @@ const ManageProjectsContainer = (ChildComponent) =>
                     [name]: value
                 }
             }), () => {
-                console.log("New projects state:", this.state.newProject, "Name:", name, "Value:", value);
+                // console.log("New projects state:", this.state.newProject, "Name:", name, "Value:", value);
             });
 
         };
 
         handleProjectSubmission = (evt) => {
             evt.preventDefault();
+            const {title, description, file, rank} = this.state.newProject;
+
+            this.setState((prevState) => ({
+                ...prevState,
+                posting: {
+                    ...prevState.posting,
+                    isPosting: true
+                }
+            }), () => {
+                this.props.addProject(title, description, file, rank);
+            });
+
         };
 
         handleViewChange = (newView) => {
@@ -149,20 +247,20 @@ const ManageProjectsContainer = (ChildComponent) =>
                         <div className="modal-dialog modal-lg">
                             <div className="modal-content text">
                                 <div className="modal-header bg-dark text-white text-center">
-                                    <h5 className="modal-title text-center">Manage Projects</h5>
+                                    <h5 className="modal-title">Manage Projects</h5>
                                     <button type="button" className="close text-white" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div className="row mt-0 p-2">
                                     <div className="col-6">
-                                        <button className='btn btn-block btn-sm btn-primary'
+                                        <button className='btn btn-block btn-sm btn-dark'
                                                 onClick={() => this.handleViewChange(ManageProjects.VIEW_MANAGE)}>
                                             View all projects
                                         </button>
                                     </div>
                                     <div className="col-6">
-                                        <button className='btn btn-block btn-sm btn-success'
+                                        <button className='btn btn-block btn-sm btn-primary'
                                                 onClick={() => this.handleViewChange(ManageProjects.VIEW_CREATE)}>
                                             Create new project
                                         </button>
@@ -209,7 +307,7 @@ const ManageProjectsContainer = (ChildComponent) =>
         };
 
         componentDidMount() {
-            // console.log("PROJECTS_MODAL props:", this.props);
+            console.log("PROJECTS_MODAL props:", this.props);
             $(function () {
                 $('div#projects-modal').modal({
                     backdrop: 'static',

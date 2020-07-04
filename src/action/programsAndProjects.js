@@ -3,11 +3,14 @@ import {
 
     FETCH_ALL_PROJECTS_SUCCESS,
     FETCH_ALL_PROJECTS_FAILURE,
-    FETCH_ALL_PROJECTS_REQUEST
+    FETCH_ALL_PROJECTS_REQUEST,
+    POST_PROJECT_REQUEST,
+    POST_PROJECT_SUCCESS,
+    POST_PROJECT_FAILURE
 
-} from '../constant'
+} from '../constant';
 
-import {getProjects} from "../helper/api";
+import {getProjects, postProject} from "../helper/api";
 
 const requestHelper = (req, payload = null) => ({
     type: req,
@@ -21,14 +24,30 @@ const responseHelper = (req, payload = null) => ({
 
 export const getAllProjects = (max) => {
     return (dispatch) => {
-        setTimeout(() => {
-            dispatch(requestHelper(FETCH_ALL_PROJECTS_REQUEST));
-            return getProjects(max).then((resp) => {
-                dispatch(responseHelper(FETCH_ALL_PROJECTS_SUCCESS, resp));
+        dispatch(requestHelper(FETCH_ALL_PROJECTS_REQUEST));
+        return getProjects(max).then((resp) => {
+            dispatch(responseHelper(FETCH_ALL_PROJECTS_SUCCESS, resp));
+        })
+            .catch((err) => {
+                dispatch(responseHelper(FETCH_ALL_PROJECTS_FAILURE, err));
             })
-                .catch((err) => {
-                    dispatch(responseHelper(FETCH_ALL_PROJECTS_FAILURE, err));
-                })
-        }, 3000)
+    }
+};
+
+export const addProject = (title, description, image, rank) => {
+    return (dispatch) => {
+        dispatch(requestHelper(POST_PROJECT_REQUEST));
+        return postProject(title, description, image, rank).then((resp) => {
+
+            console.log("results post:", resp);
+            if (resp.result.failed_msg) {
+                dispatch(requestHelper(POST_PROJECT_FAILURE, resp));
+            } else {
+                dispatch(requestHelper(POST_PROJECT_SUCCESS, resp));
+            }
+        })
+            .catch((err) => {
+                dispatch(requestHelper(POST_PROJECT_FAILURE, err));
+            });
     }
 };
