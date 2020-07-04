@@ -13,7 +13,7 @@ class ProjectsTableView extends Component {
 
     render() {
         return (
-            <>
+            <div className="zoomIn">
                 <table className="table table-sm">
                     <thead className="thead-dark">
                     <tr>
@@ -78,7 +78,7 @@ class ProjectsTableView extends Component {
                     {/*    <td>@twitter</td>*/}
                     {/*</tr>*/}
                 </table>
-            </>
+            </div>
         );
     }
 }
