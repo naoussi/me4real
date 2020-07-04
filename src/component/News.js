@@ -33,7 +33,7 @@ function News(props) {
             <div className="container">
                 {console.log("news is ", props.news)}
                 {props.news && props.news.map((value, key) => <NewsListing id={value} />)}
-                {props.news && props.news.map((value, key) => <NewsListing id={value} />)}
+                {/*{props.news && props.news.map((value, key) => <NewsListing id={value} />)}*/}
 
             </div>
         </div>

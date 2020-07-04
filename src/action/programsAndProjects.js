@@ -4,13 +4,18 @@ import {
     FETCH_ALL_PROJECTS_SUCCESS,
     FETCH_ALL_PROJECTS_FAILURE,
     FETCH_ALL_PROJECTS_REQUEST,
+
     POST_PROJECT_REQUEST,
     POST_PROJECT_SUCCESS,
-    POST_PROJECT_FAILURE
+    POST_PROJECT_FAILURE,
+
+    DELETE_PROJECT_REQUEST,
+    DELETE_PROJECT_SUCCESS,
+    DELETE_PROJECT_FAILURE
 
 } from '../constant';
 
-import {getProjects, postProject} from "../helper/api";
+import {apiDeleteProject, getProjects, postProject} from "../helper/api";
 
 const requestHelper = (req, payload = null) => ({
     type: req,
@@ -48,6 +53,20 @@ export const addProject = (title, description, image, rank) => {
         })
             .catch((err) => {
                 dispatch(requestHelper(POST_PROJECT_FAILURE, err));
+            });
+    }
+};
+
+export const deleteProject = (id) => {
+    return (dispatch) => {
+        dispatch(requestHelper(DELETE_PROJECT_REQUEST));
+        return apiDeleteProject(id).then((resp) => {
+            console.log("DELETE SUCCESS:", resp);
+            dispatch(requestHelper(DELETE_PROJECT_SUCCESS, resp));
+        })
+            .catch((err) => {
+                console.log("DELETE_FAILURE:", err);
+                dispatch(requestHelper(DELETE_PROJECT_FAILURE, err));
             });
     }
 };

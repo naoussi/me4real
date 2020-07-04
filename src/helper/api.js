@@ -396,7 +396,7 @@ export const postProject = (title, description, image, rank) => {
         .catch((err) => console.log("[POST_PROJECT_ERROR]:", err));
 };
 
-export const deleteProject = (id) => {
+export const apiDeleteProject = (id) => {
     return fetch(`${url}/projects/?id=${id}`, {
         method: "DELETE",
         headers: {

@@ -34,34 +34,52 @@ function About(props) {
                 <div className="container"  style={{  backgroundColor: 'white', marginTop: '40px' }}>
                    <p style={{ lineHeight: '1.5em', left: 'center' }}>
                     <h1 style={{textAlign: 'left'}}>What we do</h1>
-                    We help teenagers and young adults;
+                       Me4real exists to help children, adolescents and adults live in line
+                       with their unique makeup and the purpose
+                       for which they were created in order to experience fulfilment in their
+                       personal lives and catalyse transformation in their relationships, communities
+                       and the world at large.
+                       <br />
+                       Empowering children, youths and young adults to discover, embrace, develop and
+                       maximize their potential for the glory of God and the good of humanity is our mission.
+                       <br />
+                       Through Me4real programs and services ongoing in the field, in the Kids Recreation Centre (Bamenda)
+                       and in the Counselling Centre (Yaoundé), people are trained to impact their homes, local churches and nations.
+                       We help kids, adolescents and young adults to:
                     <ol>
                                 <li className="li-reset"> <b>Know and embrace the love of God </b> for them as <b>unique individuals</b></li>
                                 <li className="li-reset"> Gain a clear sense of identity so that they can become more functional members of community </li>
                                 <li className="li-reset"> Build their <b>confidence</b> and <b> self-worth</b> so that they can navigate life’s choices with conviction</li>
-                                <li className="li-reset" > <b>Uncover their potential (talents, abilities, etc.)</b> for compatible career choices.</li>
-                                <li className="li-reset" >Acquire <b>life and entrepreneurial skills </b> necessary for career and community development.</li>
                                 <li className="li-reset" >Build their <b>character</b> and <b>integrity</b> so that they can become <b>responsible citizens and excellent leaders in society.</b></li>
-                                <li className="li-reset" >Build their character and integrity so that they can become responsible citizens and excellent leaders in society.</li>
-                                <li className="li-reset" >Our work equally extends to include key stakeholders. Because it takes more than one hand to tie a bundle, we also work to.</li>
-                                <li className="li-reset" > <b>Bridge the widening generational gap</b> that exists between parents and their children in order to <b>enhance holistic child development.</b></li>
-                                <li className="li-reset" ><b> Improve the skills</b> of teachers, youth leaders, organizational leaders and others <b>who have direct contact with youth</b> so that they can serve them more effectively.</li>
-                    </ol>
-                    </p> 
-                    <br />
 
-                   <p style={{ lineHeight: '1.5em', textAlign: 'left' }}>
-                            <h1 style={{ textAlign: 'left' }}>Vision 2028 </h1>
-                    In July 2018, we are launched our <b>L.E.A.D. Now Strategic Plan (LNSP)</b> which describes the road map for our organization between now and 2028. Building healthy leaders of all ages as a way of equipping those we work with to live their uniqueness is our overall focus. Because we do not believe in giving what we do not have, we shall do this by: 
-                    <ol>
-                        <li className="li-reset"><b>L</b>iving authentically</li> 
-                        <li className="li-reset"> <b>E</b>ngaging intentionally </li>
-                        <li className="li-reset"> <b>A</b>dapting strategically</li>
-                        <li className="li-reset" ><b>D</b>eveloping holistically.</li> 
-                    </ol>
-                    Visit this <a className="default-a" href="https://docs.google.com/document/d/1T7OrTYxFKwhiLoRrrCkKLbQBaqinwJf5OB6PEMsslBU/edit">link</a> to learn more about this plan.
 
-                    </p> 
+                    </ol>
+                    </p>
+                    <p style={{ lineHeight: '1.5em', left: 'center' }}>
+                        We help people with counseling services to:
+
+                        <ol>
+                            <li className="li-reset"> Be free from emotional baggage</li>
+                            <li className="li-reset"> Process trauma and recover mental health </li>
+                            <li className="li-reset"> Process adverse childhood experiences</li>
+                            <li className="li-reset" >Be trained in trauma counselling with Traumatologist Certification internationally recognized</li>
+
+
+                        </ol>
+                    </p>
+
+                    {/*<p style={{ lineHeight: '1.5em', textAlign: 'left' }}>*/}
+                   {/*         <h1 style={{ textAlign: 'left' }}>Vision 2028 </h1>*/}
+                   {/* In July 2018, we are launched our <b>L.E.A.D. Now Strategic Plan (LNSP)</b> which describes the road map for our organization between now and 2028. Building healthy leaders of all ages as a way of equipping those we work with to live their uniqueness is our overall focus. Because we do not believe in giving what we do not have, we shall do this by: */}
+                   {/* <ol>*/}
+                   {/*     <li className="li-reset"><b>L</b>iving authentically</li> */}
+                   {/*     <li className="li-reset"> <b>E</b>ngaging intentionally </li>*/}
+                   {/*     <li className="li-reset"> <b>A</b>dapting strategically</li>*/}
+                   {/*     <li className="li-reset" ><b>D</b>eveloping holistically.</li> */}
+                   {/* </ol>*/}
+                   {/* Visit this <a className="default-a" href="https://docs.google.com/document/d/1T7OrTYxFKwhiLoRrrCkKLbQBaqinwJf5OB6PEMsslBU/edit">link</a> to learn more about this plan.*/}
+
+                   {/* </p> */}
                     <br />
                    <p style={{ lineHeight: '1.5em', textAlign: 'justify' }}>
                             <h1 style={{ textAlign: 'left' }}>Background (The Me4real Story) </h1>

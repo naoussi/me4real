@@ -2,6 +2,18 @@
 import React, {Component} from "react";
 import {connect} from 'react-redux';
 import {getAllProjects} from "../action/programsAndProjects";
+import {v4} from "uuid";
+
+const styles = {
+    imgStyles: {
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center',
+        objectFit: "cover",
+        height: 200
+    }
+};
+
 
 class ProgramAndProjects extends Component {
     constructor(props) {
@@ -39,6 +51,7 @@ class ProgramAndProjects extends Component {
     render() {
         return (
             <>
+
                 <div className='jumbotron jumbotron-fluid text-white' style={{height: 200, backgroundColor: 'black'}}>
                     <div className='container'>
                         <div className='row'>
@@ -62,7 +75,42 @@ class ProgramAndProjects extends Component {
                                     <b className='small font-weight-bold'>Loading projects ...</b>
                                 </span>
                             </div>
-                        ) : null
+                        ) :
+                        (this.state.projects.data) ? (
+
+                            <div className="container">
+                                <div className="row">
+                                    {
+                                        this.state.projects.data.map((project) => (
+                                            <div className="col-md-4" key={v4()}>
+                                                <div className="card mb-3">
+                                                    <img style={styles.imgStyles} className="card-img-top" src={project.image} alt="Card image cap"/>
+                                                    <div className="card-header">
+                                                        <h6 className="card-title">{project.title}</h6>
+                                                    </div>
+                                                    <div className="card-body">
+                                                        <p className="card-text">
+                                                            {project.description}
+                                                            {/*Lorem ipsum dolor sit amet, consectetur adipisicing elit.*/}
+                                                            {/*Ab consectetur consequuntur cumque deserunt ea eaque earum */}
+                                                            {/*eos et ex facilis laudantium, magni nam perspiciatis, quae,*/}
+                                                            {/*quia rem veritatis vero voluptatibus.*/}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            </div>
+
+                        ) : (
+                            <div className="alert alert-danger">
+                                <div className="text-center">
+                                    <b>No projects Available contact admin</b>
+                                </div>
+                            </div>
+                        )
                     }
                     <hr/>
                 </div>
@@ -77,6 +125,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     getAllProjects: (max) => dispatch(getAllProjects(max))
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProgramAndProjects);

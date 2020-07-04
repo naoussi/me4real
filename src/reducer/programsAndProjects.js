@@ -4,9 +4,14 @@ import {
     FETCH_ALL_PROJECTS_REQUEST,
     FETCH_ALL_PROJECTS_SUCCESS,
     FETCH_ALL_PROJECTS_FAILURE,
+
     POST_PROJECT_REQUEST,
     POST_PROJECT_SUCCESS,
-    POST_PROJECT_FAILURE
+    POST_PROJECT_FAILURE,
+
+    DELETE_PROJECT_REQUEST,
+    DELETE_PROJECT_SUCCESS,
+    DELETE_PROJECT_FAILURE
 
 } from '../constant';
 
@@ -24,6 +29,11 @@ const initialState = {
     projects: {
         isFetching: false,
         data: null,
+        error: null
+    },
+    projectDeletion: {
+        isDeleting: false,
+        deleted: null,
         error: null
     }
 };
@@ -87,6 +97,43 @@ export const programsAndProjects = (state = initialState, action) => {
                     error: action.payload.result
                 }
             };
+
+        // HANDLERS FOR DELETION OF A PROJECT
+        case DELETE_PROJECT_REQUEST:
+            return {
+                ...state,
+                projectDeletion: {
+                    ...state.projectDeletion,
+                    isDeleting: true,
+                    deleted: null,
+                    error: null
+                }
+            };
+
+        case DELETE_PROJECT_SUCCESS:
+            return {
+                ...state,
+                projectDeletion: {
+                    ...state.projectDeletion,
+                    isDeleting: false,
+                    // deleted: action.payload.result,
+                    deleted: {success: true},
+                    error: null
+                }
+            };
+
+        case DELETE_PROJECT_FAILURE:
+            return {
+                ...state,
+                projectDeletion: {
+                    ...state.projectDeletion,
+                    isDeleting: false,
+                    deleted: null,
+                    // error: action.payload.result
+                    error: {failure: true}
+                }
+            };
+
         default:
             return state;
     }

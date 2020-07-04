@@ -87,7 +87,7 @@ const ManageProjectsContainer = (ChildComponent) =>
 
                         projects.data && projects.data.length > 0 ? (
                             <>
-                                <ProjectsTableView projectsData={projects.data}/>
+                                <ProjectsTableView projectRefreshHandler={this.handleProjectsViewRefresh} projectsData={projects.data}/>
                             </>
 
                         ) : (
