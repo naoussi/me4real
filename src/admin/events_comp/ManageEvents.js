@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import $ from 'jquery';
 import {funcAddEvent} from "../../action/eventActions";
 import {connect} from "react-redux";
+import EventsTableView from "./EventsTableView";
 
 const ManageEventsContainer = (ChildComponent) =>
     class ManageEvents extends Component {
@@ -111,11 +112,10 @@ const ManageEventsContainer = (ChildComponent) =>
                         ) :
                         events.data && events.data.length > 0 ? (
                             <>
-                                <div className="alert alert-info">
-                                    <div className="text-center">
-                                        DATA LOADED
-                                    </div>
-                                </div>
+                                <EventsTableView
+                                    eventsData={events.data}
+                                    eventsRefreshHandler={this.handleEventsViewRefresh}
+                                />
                             </>
                         ) : (
                             <div className="alert alert-dark text-center zoomIn">
@@ -167,8 +167,7 @@ const ManageEventsContainer = (ChildComponent) =>
                 }
             }), () => {
 
-                this.props.funcAddEvent(title, description, location, time,
-                    latitude, longitude, rank);
+                this.props.funcAddEvent(title, time, description, location, latitude, longitude, rank);
 
             });
         };
