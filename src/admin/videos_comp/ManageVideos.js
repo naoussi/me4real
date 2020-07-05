@@ -162,20 +162,39 @@ const ManageVideosContainer = (ChildComponent) =>
             }));
         };
 
+        processEmbedCodeURL = (embedCode) => {
+            {/*<iframe width="1280" height="720" src="https://www.youtube.com/embed/rr0gvSS1OzE" frameBorder="0"*/}
+            {/*        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"*/}
+            {/*        allowFullScreen></iframe>*/}
+
+            const startIdx = embedCode.indexOf("src") + 5;
+            const endIdx = embedCode.toString().indexOf("\"", startIdx);
+
+
+            return embedCode.toString().slice(startIdx, endIdx);
+        };
+
         handleVideoSubmission = (evt) => {
             evt.preventDefault();
             const {title, link, rank} = this.state.newVideoData;
 
-            this.setState((prevState) => ({
-                ...prevState,
-                addVideos: {
-                    ...prevState.addVideos,
-                    isAdding: true,
-                }
-            }), () => {
-                console.log("Posting:", {title, link, rank});
-                this.props.addVideo(title, link, rank);
-            })
+            const videoURL = this.processEmbedCodeURL(link);
+
+            if (!videoURL) {
+                window.alert("Invalid video embed code");
+            } else {
+                this.setState((prevState) => ({
+                    ...prevState,
+                    addVideos: {
+                        ...prevState.addVideos,
+                        isAdding: true,
+                    }
+                }), () => {
+                    // console.log("Posting:", {title, link, rank});
+                    this.props.addVideo(title, videoURL, rank);
+                })
+            }
+
         };
 
         handleClearInfoMessage = () => {
@@ -234,7 +253,7 @@ const ManageVideosContainer = (ChildComponent) =>
                                 </div>
                                 <div className="form-group">
                                     <input type="text" className="form-control"
-                                           placeholder="Enter video URL"
+                                           placeholder="Enter youtube video (embed URL)"
                                            name="link"
                                            required="required"
                                            onChange={this.handleVideoCreateInputFieldChange}
