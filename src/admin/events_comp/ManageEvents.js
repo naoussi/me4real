@@ -237,7 +237,7 @@ const ManageEventsContainer = (ChildComponent) =>
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-control"
+                                    <input type="number" className="form-control"
                                            placeholder="Enter event rank"
                                            name="rank"
                                            required="required"
@@ -245,7 +245,7 @@ const ManageEventsContainer = (ChildComponent) =>
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-control"
+                                    <input type="number" className="form-control"
                                            placeholder="Enter event latitude"
                                            name="latitude"
                                            required="required"
@@ -253,7 +253,7 @@ const ManageEventsContainer = (ChildComponent) =>
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-control"
+                                    <input type="number" className="form-control"
                                            placeholder="Enter event longitude"
                                            name="longitude"
                                            required="required"
@@ -319,13 +319,13 @@ const ManageEventsContainer = (ChildComponent) =>
                                         <div className="col-md-6">
                                             <button className="btn btn-block btn-sm btn-dark"
                                                     onClick={() => this.handleViewChange(ManageEvents.VIEW_MANAGE)}>
-                                                View all videos
+                                                View all events
                                             </button>
                                         </div>
                                         <div className="col-md-6">
                                             <button className="btn btn-block btn-sm btn-primary"
                                                     onClick={() => this.handleViewChange(ManageEvents.VIEW_CREATE)}>
-                                                Create new video
+                                                Create new event
                                             </button>
                                         </div>
                                     </div>

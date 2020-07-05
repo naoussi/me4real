@@ -120,7 +120,7 @@ export function get_events(max) {
 
 //DELETE THE EVENT
 export function delete_event(id) {
-    return fetch(`${url}/event/?id=${id}`, {
+    return fetch(`${url}/events/?id=${id}`, {
         method: 'DELETE',
         headers: {
             Accept: 'application/json',

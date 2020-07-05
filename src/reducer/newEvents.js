@@ -2,7 +2,11 @@
 import {
     NEW_ADD_EVENT_REQUEST,
     NEW_ADD_EVENT_FAILURE,
-    NEW_ADD_EVENT_SUCCESS, NEW_FETCH_EVENTS_REQUEST, NEW_FETCH_EVENTS_SUCCESS, NEW_FETCH_EVENTS_FAILURE
+    NEW_ADD_EVENT_SUCCESS,
+    NEW_FETCH_EVENTS_REQUEST,
+    NEW_FETCH_EVENTS_SUCCESS,
+    NEW_FETCH_EVENTS_FAILURE,
+    NEW_DELETE_EVENT_REQUEST, NEW_DELETE_EVENT_SUCCESS, NEW_DELETE_EVENT_FAILURE
 } from "../constant";
 
 const initialState = {
@@ -15,6 +19,11 @@ const initialState = {
         isAdding: false,
         added: null,
         error: null
+    },
+    deleteEvent: {
+        isDeleting: false,
+        deleted: false,
+        error: null,
     }
 };
 
@@ -77,6 +86,36 @@ export const newEvents = (state = initialState, action) => {
                     isAdding: false,
                     added: null,
                     error: action.payload
+                }
+            };
+
+        case NEW_DELETE_EVENT_REQUEST:
+            return {
+                ...state,
+                deleteEvent: {
+                    isDeleting: true,
+                    deleted: false,
+                    error: null
+                }
+            };
+
+        case NEW_DELETE_EVENT_SUCCESS:
+            return {
+                ...state,
+                deleteEvent: {
+                    isDeleting: false,
+                    deleted: true,
+                    error: null
+                }
+            };
+
+        case NEW_DELETE_EVENT_FAILURE:
+            return {
+                ...state,
+                deleteEvent: {
+                    isDeleting: false,
+                    deleted: false,
+                    error: null
                 }
             };
 

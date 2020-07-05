@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {v4} from "uuid";
 import {connect} from "react-redux";
+import {funcDeleteEvent} from "../../action/eventActions";
 
 class EventsTableView extends Component {
     constructor(props) {
@@ -18,7 +19,20 @@ class EventsTableView extends Component {
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
+        if (nextProps.deleteEvent && this.state.eventsDeletion.isDeleting) {
+            this.setState((prevState) => ({
+                ...prevState,
+                eventsDeletion: {
+                    ...nextProps.deleteEvent
+                }
+            }), () => {
 
+                if (this.state.eventsDeletion.deleted) {
+                    this.props.eventsRefreshHandler();
+                }
+
+            });
+        }
     }
 
     componentDidMount() {
@@ -27,6 +41,23 @@ class EventsTableView extends Component {
             eventsData: [...this.props.eventsData]
         }))
     }
+
+    handleEventDelete = (evt, event) => {
+        if (window.confirm(`Sure you wish to delete project -- ${event["title"]}`)) {
+            this.setState((prevState) => ({
+                ...prevState,
+                eventsDeletion: {
+                    ...prevState.eventsDeletion,
+                    _id: event["_id"],
+                    isDeleting: true
+                }
+            }), () => {
+
+                this.props.funcDeleteEvent(event["_id"]);
+
+            })
+        }
+    };
 
     render() {
         const {eventsData} = this.state;
@@ -43,6 +74,17 @@ class EventsTableView extends Component {
                         </div>
                     ) : (
                         <>
+                            {
+                                this.state.eventsDeletion.isDeleting ? (
+                                    <>
+                                        <div className="spinner">
+                                            <div className="bounce1"/>
+                                            <div className="bounce2"/>
+                                            <div className="bounce3"/>
+                                        </div>
+                                    </>
+                                ) : null
+                            }
                             <div className="zoomIn">
                                 <table className="table table-sm">
                                     <thead className="thead-dark">
@@ -96,7 +138,8 @@ class EventsTableView extends Component {
                                                     </td>
                                                     <td>
                                                         <div className="card-title">
-                                                            <button className="btn btn-outline-danger btn-sm">
+                                                            <button className="btn btn-outline-danger btn-sm"
+                                                                onClick={(evt) => this.handleEventDelete(evt, event)}>
                                                                 delete
                                                             </button>
                                                         </div>
@@ -116,10 +159,17 @@ class EventsTableView extends Component {
     }
 }
 
-
 EventsTableView.propTypes = {
     eventsData: PropTypes.array.isRequired,
     eventsRefreshHandler: PropTypes.func.isRequired
 };
 
-export default EventsTableView;
+const mapStateToProps = (state) => ({
+    deleteEvent: state.newEvents.deleteEvent
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    funcDeleteEvent: (id) => dispatch(funcDeleteEvent(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventsTableView);
