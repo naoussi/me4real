@@ -412,7 +412,7 @@ export const apiDeleteProject = (id) => {
 // ################################### [NEW EVENTS PROCESSING] ########################################
 
 export const apiAddEvent = (body) => {
-    return fetch(`${url}/event/`, {
+    return fetch(`${url}/events/`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -423,4 +423,12 @@ export const apiAddEvent = (body) => {
     })
         .then((response) => response.json())
         .catch(err => console.log("rrr ", err))
+};
+
+export const apiGetEvents = (max) => {
+    return fetch(`${url}/events/?max=${max}`, getHeadersConfig())
+        .then((response) => response.json())
+        .catch((err) => {
+            console.log("[FETCH_ERROR]: Couldn't obtain programs");
+        })
 };

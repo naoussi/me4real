@@ -8,6 +8,8 @@ import {addProject, getAllProjects} from "../action/programsAndProjects";
 import {connect} from 'react-redux';
 import ManageVideosContainer from "./videos_comp/ManageVideos";
 import {addVideo, deleteVideo, fetchAllVideos} from "../action/videosActions";
+import ManageEventsContainer from "./events_comp/ManageEvents";
+import {funcAddEvent, getEvents} from "../action/eventActions";
 
 function Dashboard(props) {
     useEffect(() => {
@@ -75,7 +77,7 @@ function Dashboard(props) {
                             </Card.Body>
                         </Card>
                     </div>
-                    <NavLink to='/manage/event'  >
+                    <div onClick={props.showEventsModal} style={{cursor: "pointer"}}>
                         <Card className="text-center" bg="warning">
                             <Card.Body>
                                 <Card.Title>Events</Card.Title>
@@ -87,7 +89,7 @@ function Dashboard(props) {
                                 </Card.Text>
                             </Card.Body>
                         </Card>
-                    </NavLink>
+                    </div>
                     <NavLink to='/manage/blog'  >
                         <Card className="text-center" bg="warning">
                             <Card.Body>
@@ -126,16 +128,22 @@ const mapStateToProps = (state) => ({
     posting: state.programsAndProjects.posting,
     allVideos: state.newVideosUI.allVideos,
     addVideos: state.newVideosUI.addVideos,
+    allEvents: state.newEvents.allEvents,
+    addEvent: state.newEvents.addEvent
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getAllProjects: (max) => dispatch(getAllProjects(max)),
     addProject: (title, description, image, rank) => dispatch(addProject(title, description, image, rank)),
     fetchAllVideos: (max) => dispatch(fetchAllVideos(max)),
-    addVideo: (title, link, rank) => dispatch(addVideo(title, link, rank))
+    addVideo: (title, link, rank) => dispatch(addVideo(title, link, rank)),
+    funcAddEvent: (title, time, description, location, latitude, longitude, rank) =>
+        dispatch(funcAddEvent(title, time, description, location, latitude, longitude, rank)),
+    getEvents: (max) => dispatch(getEvents(max))
 });
 
 let finalExport = ManageProjectsContainer(Dashboard);
 finalExport = ManageVideosContainer(finalExport);
+finalExport = ManageEventsContainer(finalExport);
 
 export default connect(mapStateToProps, mapDispatchToProps)(finalExport);
