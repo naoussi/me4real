@@ -408,3 +408,19 @@ export const apiDeleteProject = (id) => {
         .then((response) => response.json())
         .catch((error) => {})
 };
+
+// ################################### [NEW EVENTS PROCESSING] ########################################
+
+export const apiAddEvent = (body) => {
+    return fetch(`${url}/event/`, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+
+        },
+        body: JSON.stringify(body),
+    })
+        .then((response) => response.json())
+        .catch(err => console.log("rrr ", err))
+};

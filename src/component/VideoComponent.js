@@ -22,7 +22,7 @@ class VideoComponent extends Component {
                     ...nextProps.allVideos
                 }
             }), () => {
-                console.log("All videos:", this.state.allVideos.data);
+                // console.log("All videos:", this.state.allVideos.data);
             });
         }
     }
@@ -74,12 +74,15 @@ class VideoComponent extends Component {
                                             {
                                                 this.state.allVideos.data.map((video) => (
 
-                                                    <iframe width="505" height="310" style={{padding: '10px'}}
-                                                        src={video.link}
-                                                        frameborder="0"
-                                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                        allowfullscreen
-                                                    />
+                                                    <div>
+                                                        <h5 className="card-title">{video.title}</h5>
+                                                        <iframe width="505" height="310" style={{padding: '10px'}}
+                                                                src={video.link}
+                                                                frameBorder="0"
+                                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                                                allowFullScreen
+                                                        />
+                                                    </div>
                                                 ))
                                             }
                                         </div>

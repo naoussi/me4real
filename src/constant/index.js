@@ -165,3 +165,10 @@ export const NEW_DELETE_VIDEO_REQUEST = "NEW_DELETE_VIDEO_REQUEST";
 export const NEW_DELETE_VIDEO_SUCCESS = "NEW_DELETE_VIDEO_SUCCESS";
 export const NEW_DELETE_VIDEO_FAILURE = "NEW_DELETE_VIDEO_FAILURE";
 
+
+// ############################## [EVENTS CODE] ###############################################
+
+export const NEW_ADD_EVENT_REQUEST = "NEW_ADD_EVENT_REQUEST";
+export const NEW_ADD_EVENT_SUCCESS = "NEW_ADD_EVENT_SUCCESS";
+export const NEW_ADD_EVENT_FAILURE = "NEW_ADD_EVENT_FAILURE";
+

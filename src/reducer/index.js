@@ -6,6 +6,7 @@ import blog from './blog'
 import video from './video'
 import {programsAndProjects} from "./programsAndProjects";
 import {newVideosUI} from "./newVideosUI";
+import {newEvents} from "./newEvents";
 import {combineReducers}  from 'redux';
 
 export default combineReducers({
@@ -16,5 +17,6 @@ export default combineReducers({
     blog,
     video,
     programsAndProjects,
-    newVideosUI
+    newVideosUI,
+    newEvents
 })
