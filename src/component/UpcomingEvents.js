@@ -27,9 +27,9 @@ function UpcomingEvents() {
 
             <div className="card-container">
 
-     { [1, 2, 3].map((i, key) => 
-                    <EventCard key={key} />
-                    )}
+     {/*{ [1, 2, 3].map((i, key) => */}
+     {/*               <EventCard key={key} />*/}
+     {/*               )}*/}
                
             </div>
          

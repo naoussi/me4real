@@ -2,8 +2,13 @@ import React, {useState} from 'react'
 import '../App.css'
 import {Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import PropTypes from "prop-types";
+
 function EventCard(props) {
     const [ hover , setHover] = useState(false);
+
+    const timeSections = props.eventData["time"].match(/\S+\s*/g);
+    // console.log("TIME_SECTIONS:", timeSections);
 
     const goToEventsPage = (id) => {
         window.location = `/event/${id}`;
@@ -12,50 +17,63 @@ function EventCard(props) {
     return(
         <div style={{ display: "flex", justifyContent: 'center' }}>
 
-        <div className="_1eoat _2ipfx"  >
-                <div className="_5vofw" style={{ borderBottomWidth: '1px', borderColor: '#FFCC00', justifyContent: 'center' }}>
+            <div className="_1eoat _2ipfx"  >
+                    <div className="_5vofw" style={{ borderBottomWidth: '1px', borderColor: '#FFCC00', justifyContent: 'center' }}>
 
-                <div className={hover ? "hover-date-container" :"date-container"} >
-                    <div className="day">
-                        20
+                    <div className={hover ? "hover-date-container" :"date-container"} >
+                        <div className="day">
+                            {timeSections[0]}
+                            </div>
+                        <div className="month-container">
+                            <div className="month" style={{ opacity: 0.5 }}> {timeSections[1]}</div>
+                            <div className="month"> {timeSections[1]}</div>
                         </div>
-                    <div className="month-container">
-                        <div className="month" style={{ opacity: 0.5 }}> Jan</div>
-                        <div className="month"> Jan</div>
                     </div>
-                </div>
-                <div className="_3qhs" >
-                        <div className="_153IM"
-                             onClick={() => goToEventsPage(props.id)}
-                             onMouseOver={() => { console.log("hovering"); setHover(true) }}
-                             onMouseLeave={() => setHover(false)}>
+                    <div className="_3qhs" >
+                            <div className="_153IM"
+                                 onClick={() => goToEventsPage(props.id)}
+                                 onMouseOver={() => { console.log("hovering"); setHover(true) }}
+                                 onMouseLeave={() => setHover(false)}>
 
-                            <div className="event-item-title"> <p >Lecture: The gender play gap</p></div>
-                            <div className="event-item-title"> &nbsp;/&nbsp;</div>
-                            <div className="event-item-location"> San Francisco</div>
-
-                        </div>
-                        {hover && <div style={{ display: 'block' }}>
-                            <div><span>Dec 19, 2022, 8:00 PM </span> </div>
-                            <span>San Francisco, San Francisco, CA, USA</span>
+                                <div className="event-item-title">
+                                    <p >{props.eventData["title"]}</p>
                                 </div>
-                        }
-                </div>
-                <div className="2giuh">
+                                <div className="event-item-title"> &nbsp;/&nbsp;</div>
+                                <div className="event-item-location">
+                                    {props.eventData["location"]}
+                                </div>
 
-                    <div className="btn-right">
-                    <Link to={`/event/${props.id}`} >
-
-                        <Button variant="warning" size="md">
-                            More Detials
-                                </Button>
-                    </Link>
+                            </div>
+                            {
+                                hover && (
+                                    <div style={{ display: 'block' }}>
+                                        <div>
+                                            <span>{props.eventData["time"]}</span>
+                                        </div>
+                                        <span>{props.eventData["location"]}</span>
+                                    </div>
+                                )
+                            }
                     </div>
-                </div>
+                    <div className="2giuh">
 
+                        <div className="btn-right">
+                        <Link to={`/event/${props.id}`} >
+
+                            <Button variant="warning" size="md">
+                                More Detials
+                                    </Button>
+                        </Link>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </div>
         </div>
     )
 }
+
+EventCard.propTypes = {
+    eventData: PropTypes.object.isRequired
+};
 export default EventCard

@@ -230,7 +230,7 @@ const ManageEventsContainer = (ChildComponent) =>
                                 </div>
                                 <div className="form-group">
                                     <input type="text" className="form-control"
-                                           placeholder="Enter event time"
+                                           placeholder="Enter event time (as: dd mm yyy hh:mm)"
                                            name="time"
                                            required="required"
                                            onChange={this.handleInputFieldChange}
