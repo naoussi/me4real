@@ -96,7 +96,7 @@ class Event extends Component {
                         ):
                         (this.state.allEvents.data && this.state.allEvents.data.length > 0) ? (
                            <>
-                               <section>
+                               <section className="mt-5">
                                    {
                                        this.state.allEvents.data.map((event) => (
                                            <EventCard eventData={event}  />

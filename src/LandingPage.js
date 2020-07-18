@@ -187,7 +187,6 @@ function LandingPage(props) {
                         <span className=""> me4real Motto</span>
                     </p>
                     {/*<div className="row mission-height site-primary-bg-color" >*/}
-
                     {/*</div>*/}
                 </section>
                 {/* up coming events section */}

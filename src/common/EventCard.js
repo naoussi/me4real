@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from "prop-types";
 
 function EventCard(props) {
-    const [ hover , setHover] = useState(false);
+    const [ hover , setHover] = useState(true);
 
     const timeSections = props.eventData["time"].match(/\S+\s*/g);
     // console.log("TIME_SECTIONS:", timeSections);
@@ -15,60 +15,72 @@ function EventCard(props) {
     };
 
     return(
-        <div style={{ display: "flex", justifyContent: 'center' }}>
+        <div className="container">
 
-            <div className="_1eoat _2ipfx"  >
-                    <div className="_5vofw" style={{ borderBottomWidth: '1px', borderColor: '#FFCC00', justifyContent: 'center' }}>
-
+            <div className="row">
+                <div className="col-12">
                     <div className={hover ? "hover-date-container" :"date-container"} >
-                        <div className="day">
+                        <div className="day mr-1">
                             {timeSections[0]}
-                            </div>
+                        </div>
                         <div className="month-container">
                             <div className="month" style={{ opacity: 0.5 }}> {timeSections[1]}</div>
                             <div className="month"> {timeSections[1]}</div>
                         </div>
                     </div>
                     <div className="_3qhs" >
-                            <div className="_153IM"
-                                 onClick={() => goToEventsPage(props.id)}
-                                 onMouseOver={() => { console.log("hovering"); setHover(true) }}
-                                 onMouseLeave={() => setHover(false)}>
+                        <div className="_153IM"
+                             onClick={() => goToEventsPage(props.eventData._id)}
+                            // onMouseOver={() => { console.log("hovering"); setHover(true) }}
+                            // onMouseLeave={() => setHover(false)}
+                        >
 
-                                <div className="event-item-title">
-                                    <p >{props.eventData["title"]}</p>
-                                </div>
-                                <div className="event-item-title"> &nbsp;/&nbsp;</div>
-                                <div className="event-item-location">
-                                    {props.eventData["location"]}
-                                </div>
-
+                            <div className="event-item-title">
+                                <p >{props.eventData["title"]}</p>
                             </div>
-                            {
-                                hover && (
-                                    <div style={{ display: 'block' }}>
-                                        <div>
-                                            <span>{props.eventData["time"]}</span>
-                                        </div>
-                                        <span>{props.eventData["location"]}</span>
+                            <div className="event-item-title"> &nbsp;/&nbsp;</div>
+                            <div className="event-item-location">
+                                {props.eventData["location"]}
+                            </div>
+
+                        </div>
+                        {
+                            hover && (
+                                <div style={{ display: 'block' }}>
+                                    <div>
+                                        <span>{props.eventData["time"]}</span>
                                     </div>
-                                )
-                            }
+                                    <span>{props.eventData["location"]}</span>
+                                    <div style={{float: "right"}}>
+                                        <Link to={`/event/${props.eventData._id}`} >
+
+                                            <Button variant="warning" size="md">
+                                                More Detials
+                                            </Button>
+                                        </Link>
+                                    </div>
+                                </div>
+                            )
+                        }
                     </div>
-                    <div className="2giuh">
 
-                        <div className="btn-right">
-                        <Link to={`/event/${props.id}`} >
+                    <div className="_1eoat _2ipfx"  >
+                        <div className="_5vofw" style={{ borderBottomWidth: '1px', borderColor: '#FFCC00', width: '100%' }}>
 
-                            <Button variant="warning" size="md">
-                                More Detials
-                                    </Button>
-                        </Link>
+
+                            <div className="2giuh">
+
+                                <div className="btn-right">
+
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-
                 </div>
             </div>
+
+
         </div>
     )
 }
