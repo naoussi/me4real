@@ -11,6 +11,7 @@ import { FaFacebook, FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa';
 import testimonialA from "./images/testimonial-1.jpg";
 import testimonialB from "./images/kum_rogers.jpg";
 import testimonialC from "./images/phebe.jpg";
+import joinUsImg from "./images/IMG-1482.jpg";
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(actions, dispatch)
@@ -149,8 +150,8 @@ function LandingPage(props) {
                     </div>
                     <div className="col-md-3 col-sm-3 mission-height-landing site-tertiary-bg-color" >
                         <div style={{ paddingTop: 20 }} >
-                            <a href="/"><p className="large-text">Programs & Projects</p></a>
-                            <p className="small-text"> Our goal, vision , mission</p>
+                            <a href="/projects"><p className="large-text">Programs</p></a>
+                            <p className="small-text"> View Our Programs And Projects</p>
                         </div>
                     </div>
                     <div className="col-md-3 col-sm-3 mission-height-landing site-suppliment-bg-color" >
@@ -293,6 +294,9 @@ function LandingPage(props) {
 
                 </section>
 
+                <br/>
+                <br/>
+
                 {/* Join us section */}
                 <section>
                     <div className="row">
@@ -307,7 +311,7 @@ function LandingPage(props) {
                             </div>
                         </div>
                         <div className="col-md-7" style={{ height: '525px', padding: 0 }}>
-                            <img src="generic.png" style={styles.testimonialStyle} height='525px' width="100%" />
+                            <img src={joinUsImg} style={styles.testimonialStyle} height='525px' width="100%" />
                         </div>
 
                     </div>

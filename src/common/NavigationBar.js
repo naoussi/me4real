@@ -72,15 +72,15 @@ function NavigationBar(props){
 
                                 <li>
                                     <NavLink to='/projects' exact activeClassName='active'>
-                                        Projects
+                                        Programs
                                     </NavLink>
                                 </li>
 
-                                <li>
-                                    <NavLink to='/blog' exact activeClassName='active'>
-                                        Blog Post
-					                </NavLink>
-                                </li>
+                                {/*<li>*/}
+                                {/*    <NavLink to='/blog' exact activeClassName='active'>*/}
+                                {/*        Blog Post*/}
+					            {/*    </NavLink>*/}
+                                {/*</li>*/}
 
                                 <li>
                                     <NavLink to='/contact' exact activeClassName='active'>
