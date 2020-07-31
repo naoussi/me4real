@@ -103,11 +103,11 @@ function Footer(props) {
                                             <span className="footer-nav"> About</span>
 					                </NavLink>
                                     </li>
-                                    <li style={{ padding: '8px 8px 8px 0px' }}>
-                                        <NavLink to='/dashboard' exact activeClassName='active'>
-                                            <span className="footer-nav">Administer</span>
-					                </NavLink>
-                                    </li>
+                                    {/*<li style={{ padding: '8px 8px 8px 0px' }}>*/}
+                                    {/*    <NavLink to='/dashboard' exact activeClassName='active'>*/}
+                                    {/*        <span className="footer-nav">Administer</span>*/}
+					                {/*</NavLink>*/}
+                                    {/*</li>*/}
                                 </ul>
                             </nav>
                         </Nav>

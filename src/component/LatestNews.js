@@ -20,8 +20,13 @@ function mapStateToProps(state) {
 }
 function LatestNews(props){
     useEffect(() => {
-        props.handleFetchNews(3)
-    }, [])
+        if (props.source && props.source === "LANDING_PAGE") {
+            props.handleFetchNews(3)
+        } else {
+            props.handleFetchNews(1000);
+        }
+    }, []);
+    const news = props.news && props.news.filter((news, idx) => idx < 3);
     return (
         <div className="container">
             <h2 className="latest-news-h2"> Latest News</h2>
@@ -36,7 +41,7 @@ function LatestNews(props){
                 <div className='row'>
                     <div className='card-deck'>
                         {
-                            props.news && props.news.map((newsItem,key) => (
+                            news && news.map((newsItem,key) => (
                                 <NewsCard  newsItem={newsItem} key={key}/>
                             ))
                         }

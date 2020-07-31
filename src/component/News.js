@@ -18,7 +18,7 @@ function mapStateToProps(state) {
 }
 function News(props) {
     useEffect(() => {
-        props.handleFetchNews(20)
+        props.handleFetchNews(1000)
     }, []);
     return (
         <div>

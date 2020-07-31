@@ -20,7 +20,8 @@ function mapDispatchToProps(dispatch) {
 }
 function NewsDetail(props) {
     let id = props.match.params.news_id
-    const markdownnews = props.news && props.news.filter(item => item._id ==id)
+    const markdownnews = props.news && props.news.filter(item => item._id == id)
+    console.log("NEWS DETAIL --> ", props.news, "news id:", id);
     useEffect(() => {
         window.scrollTo(0, 0)
 
@@ -56,7 +57,7 @@ function NewsDetail(props) {
             </section>
             {/* Latest news section */}
             <section>
-                <LatestNews />
+                <LatestNews source={"DETAILS_PAGE"}/>
             </section>
         </div>
         </div>

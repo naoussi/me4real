@@ -150,14 +150,14 @@ function LandingPage(props) {
                     </div>
                     <div className="col-md-3 col-sm-3 mission-height-landing site-tertiary-bg-color" >
                         <div style={{ paddingTop: 20 }} >
-                            <a href="/projects"><p className="large-text">Programs</p></a>
-                            <p className="small-text"> View Our Programs And Projects</p>
+                            <a href="/projects"><p className="large-text">Projects</p></a>
+                            <p className="small-text"> View Our Projects</p>
                         </div>
                     </div>
                     <div className="col-md-3 col-sm-3 mission-height-landing site-suppliment-bg-color" >
                         <div style={{ paddingTop: 20 }} >
-                            <a href="/event"><p className="large-text"> Our Events</p></a>
-                            <p className="small-text">Register & Help Make Change</p>
+                            <a href="/event"><p className="large-text text-dark"> Our Events</p></a>
+                            <p className="small-text text-dark">Register & Help Make Change</p>
                         </div>
 
                     </div>
@@ -173,7 +173,7 @@ function LandingPage(props) {
                 {/* Latest news section */}
             <div className='container'>
                 <section>
-                    <LatestNews />
+                    <LatestNews source={"LANDING_PAGE"}/>
                 </section>
             </div>
             <div>
